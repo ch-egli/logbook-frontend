@@ -33,7 +33,7 @@ class WorkoutsService {
 
     addWorkout(workout) {
         //let res = this.$http.post('http://54.93.84.56:8181/workouts', workout);
-        let res = this.$http.post('http://localhost:8181/v1/users/liv/workouts', workout);
+        let res = this.$http.post('http://localhost:8181/v1/users/' + workout.benutzername + '/workouts', workout);
         res.success(function(data, status, headers, config) {
             console.log('It works: ' + status);
         });

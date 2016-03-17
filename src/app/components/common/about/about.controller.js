@@ -163,7 +163,8 @@ class AboutController {
             "zuege12": this.zuege12,
             "zuege23": this.zuege23,
             "zuege34": this.zuege34,
-            "trainingszeit": this.trainingszeit
+            "trainingszeit": this.trainingszeit,
+            "sonstiges": this.sonstiges
         };
         this.workoutsService.addWorkout(dataObj);
 
