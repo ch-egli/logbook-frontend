@@ -7,12 +7,13 @@
  */
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import uiBootstrap from 'angular-ui-bootstrap';
 
 import aboutComponent from './about.component';
 import './about.css';
 
 let aboutModule = angular.module('about', [
-    uiRouter
+    uiRouter, uiBootstrap
 ])
     .config(/*@ngInject*/($stateProvider) => {
         $stateProvider.state('about', {

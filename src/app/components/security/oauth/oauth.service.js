@@ -114,7 +114,6 @@ class OAuthService {
         let service = this;
 
         if (response && response.access_token) {
-
             service.$log.debug('Got an access_token, now trying to get user-info from backend');
 
             service.$http.get(service.config.resourceServerUrl + 'v1/usrs/' + this.user.name, {
@@ -123,6 +122,9 @@ class OAuthService {
             })
                 .success(userResponse => {
                     if (userResponse) {
+                        // add token as default header
+                        service.$http.defaults.headers.common['Authorization'] = 'Bearer ' + response.access_token;
+
                         this.user.authenticated = true;
                         this.user.roles = userResponse.rollen;
                         this.user.firstname = userResponse.vorname;
@@ -131,8 +133,6 @@ class OAuthService {
                         this.user.phone = userResponse.telefon;
 
                         service._setAuthData(this.user);
-                        // Manuelle URL bauen um den Code im Querystring zu entfernen
-                        //service.$window.location.replace([location.protocol, '//', location.host, location.pathname].join(''));
                         service.$location.path('/home');
                     }
                 })
