@@ -22,8 +22,13 @@ var commonConfig = exports.commonConfig = {
             'angular-resource',
             'angular-translate',
             'angular-translate-loader-static-files',
+            'angular-animate',
+            'angular-touch',
+            'angular-ui-bootstrap',
             'angular-bootstrap-npm',
+            'angular-cookies',
             'bootstrap/dist/css/bootstrap.css',
+            'bootstrap',
             'jquery'
         ]
     },

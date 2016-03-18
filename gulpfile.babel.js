@@ -118,6 +118,13 @@ gulp.task('build', ['test-selenium-webgrid', 'doc'], (done) => {
     return webpack(webpackConfig.production, done);
 });
 
+
+gulp.task('build2', (done) => {
+    gulp.src(path.join(root, 'index.html')).pipe(gulp.dest(paths.build));
+
+    return webpack(webpackConfig.production, done);
+});
+
 /**
  * Gulp-Task: Standardfall mit 'gulp' kopiert das HTML nach /dist und startet Webserver
  */

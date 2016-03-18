@@ -22,6 +22,7 @@ class AboutController {
         if (authData !== null) {
             this.username = authData.name;
         }
+        this.$log.debug('username (in constructor): ' + this.username);
 
         //this.datum = null;
         this.ort = null;

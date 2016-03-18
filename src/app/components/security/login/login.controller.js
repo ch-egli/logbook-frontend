@@ -6,6 +6,8 @@
  * @since 28.01.2016
  */
 class LoginController {
+
+    /*@ngInject*/
     constructor(oAuthService, $log) {
         this.oAuthService = oAuthService;
         this.$log = $log;
