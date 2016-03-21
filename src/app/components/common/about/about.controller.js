@@ -9,8 +9,10 @@ class AboutController {
     /*@ngInject*/
     constructor(workoutsService, oAuthService, $log) {
         this.workoutsService = workoutsService;
-        this.oAuthService = oAuthService;
         this.$log = $log;
+
+        this.oAuthService = oAuthService;
+
 
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
@@ -169,7 +171,21 @@ class AboutController {
         };
         this.workoutsService.addWorkout(dataObj);
 
-        this.username = "";
+        this.ort = null;
+        this.schlaf = null;
+        this.lead = null;
+        this.bouldern = null;
+        this.kraftraum = null;
+        this.dehnen = null;
+        this.campus = null;
+        this.mentaltraining = null;
+        this.belastung = null;
+        this.trainingszeit = null;
+        this.zuege12 = null;
+        this.zuege23 = null;
+        this.zuege34 = null;
+        this.sonstiges = null;
+
         this.workoutForm.$setPristine();
     }
 

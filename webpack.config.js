@@ -28,7 +28,6 @@ var commonConfig = exports.commonConfig = {
             'angular-bootstrap-npm',
             'angular-cookies',
             'bootstrap/dist/css/bootstrap.css',
-            'bootstrap',
             'jquery'
         ]
     },

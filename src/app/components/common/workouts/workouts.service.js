@@ -8,7 +8,9 @@
 class WorkoutsService {
     /*@ngInject*/
     constructor(config, $resource, $http) {
-        this.confi = config;
+        //this.$log = $log;
+        this.config = config;
+        //this.$log.debug('workout config: ' + this.config);
         this.Workouts = $resource(config.resourceServerUrl + 'v1/public/lastworkouts');
         //this.Workouts = $resource('http://localhost:8181/workouts/:workoutId', {workoutId: '@id'});
         //this.Workouts = $resource('http://54.93.84.56:8181/workouts/:workoutId', {workoutId: '@id'});
@@ -35,6 +37,7 @@ class WorkoutsService {
     addWorkout(workout) {
         //let res = this.$http.post('http://54.93.84.56:8181/workouts', workout);
         let service = this;
+        //let res = this.$http.post('http://localhost:8181/' + 'v1/users/' + workout.benutzername + '/workouts', workout);
         let res = this.$http.post(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts', workout);
         res.success(function(data, status, headers, config) {
             console.log('It works: ' + status);

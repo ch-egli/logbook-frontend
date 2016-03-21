@@ -6,18 +6,14 @@
  * @since 28.01.2016
  */
 class HomeController {
-    constructor(workoutsService, oAuthService, $log) {
-        this.workoutsService = workoutsService;
-        this.oAuthService = oAuthService;
-        this.$log = $log;
-
+    constructor() {
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
 
         this.workoutForm = {};
         this.username = "";
 
-        this.workouts = workoutsService.getAllWorkouts();
+        this.workouts = null;
         //this.workoutById = workoutsService.getWorkoutById(2);
         //this.workouts = 2;
         //this.workoutById = workoutsService.getWorkoutById(2);
