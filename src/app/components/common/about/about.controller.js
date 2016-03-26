@@ -152,7 +152,7 @@ class AboutController {
         // add workout
         let dataObj = {
             "benutzername": this.username,
-            "datum": "2016-03-03",
+            "datum": this.datum,
             "ort": this.ort,
             "schlaf": this.schlaf,
             "gefuehl": this.gefuehl,
