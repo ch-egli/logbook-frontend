@@ -6,18 +6,16 @@
  * @since 28.01.2016
  */
 class HomeController {
-    constructor(workoutsService) {
+    constructor(workoutsService, oAuthService) {
         this.workoutsService = workoutsService;
-        this.title = 'Logbook for Climbing Workouts';
-        this.welcomeMessage = 'Herzlich Willkommen';
+        this.oAuthService = oAuthService;
+
+        this.title = 'RZ-BeO Trainings-Logbook';
+        this.welcomeMessage = 'Herzlich Willkommen, ' + this.oAuthService.getFirstname();
 
         this.workoutForm = {};
-        //this.username = "";
 
         this.workouts = this.workoutsService.getAllWorkouts();
-        //this.workoutById = workoutsService.getWorkoutById(2);
-        //this.workouts = 2;
-        //this.workoutById = workoutsService.getWorkoutById(2);
       }
 
 }

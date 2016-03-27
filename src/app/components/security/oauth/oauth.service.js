@@ -106,6 +106,18 @@ class OAuthService {
     }
 
     /**
+     * Gibt den Vornamen eines Users zurueck falls eingelogt. Sonst ''.
+     * @returns {*} Vorname oder ''.
+     */
+    getFirstname() {
+        if (this.isLoggedIn()) {
+            return this._getAuthData().firstname;
+        } else {
+            return '';
+        }
+    }
+
+    /**
      * Laden der Benutzerdaten...
      * @param response Die Antwort vom token Aufruf.
      * @private
@@ -139,6 +151,8 @@ class OAuthService {
                 .error(err => {
                     service._handleErrorResponse(err, true);
                 });
+        } else {
+            service.$log.debug('Did not get a valid access token...');
         }
     }
 
@@ -150,6 +164,7 @@ class OAuthService {
      */
     _handleErrorResponse(error, logError) {
         let service = this;
+        service.$log.debug('Enter _handleErrorResponse');
 
         if (logError) {
             service.$log.error('Error while logging in: ', error);

@@ -4,7 +4,6 @@
     <div class="container">
         <div class="jumbotron">
             <h1>{{ vm.title }}</h1>
-
             <p>{{ vm.welcomeMessage }}</p>
         </div>
 
@@ -14,20 +13,20 @@
             <h2>Letzte Trainingseinheiten aller Benutzer</h2>
             <table class="table table-striped">
                 <thead>
-                <tr>
-                    <th>Datum</th>
-                    <th>Benutzer</th>
-                    <th>Ort</th>
-                    <th>Zeit (Minuten)</th>
-                </tr>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Benutzer</th>
+                        <th>Ort</th>
+                        <th>Zeit (Minuten)</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="w in vm.workouts" >
-                    <td>{{ w.datum }}</td>
-                    <td>{{ w.benutzername }}</td>
-                    <td>{{ w.ort }}</td>
-                    <td>{{ w.trainingszeit }}</td>
-                </tr>
+                    <tr ng-repeat="w in vm.workouts" >
+                        <td>{{ w.datum }}</td>
+                        <td>{{ w.benutzername }}</td>
+                        <td>{{ w.ort }}</td>
+                        <td>{{ w.trainingszeit }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

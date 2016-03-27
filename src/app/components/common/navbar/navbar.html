@@ -15,12 +15,14 @@
         <div uib-collapse="vm.navCollapsed" class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li><a ui-sref="home">Home</a></li>
-                <li><a ui-sref="about">About</a></li>
+                <li><a ui-sref="about"><span class="glyphicon glyphicon-plus"></span> Neu...</a></li>
+<!--
                 <li><a ui-sref="theme">Theme Example</a></li>
+-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="!vm.oAuthService.isLoggedIn()"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                <li ng-show="vm.oAuthService.isLoggedIn()"><a ui-sref="logout"><span class="glyphicon glyphicon-log-in"></span> Hallo {{ vm.oAuthService.getUsername() }} -- Logout</a></li>
+                <li ng-show="vm.oAuthService.isLoggedIn()"><a ui-sref="logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

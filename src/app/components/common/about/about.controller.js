@@ -7,9 +7,10 @@
  */
 class AboutController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, $log) {
+    constructor(workoutsService, oAuthService, $log, $state) {
         this.workoutsService = workoutsService;
         this.$log = $log;
+        this.$state = $state;
 
         this.oAuthService = oAuthService;
 
@@ -26,8 +27,8 @@ class AboutController {
         }
         this.$log.debug('username (in constructor): ' + this.username);
 
-        //this.datum = null;
-        this.ort = null;
+        // init default values
+        this.ort = 'K44';
         this.schlaf = null;
         this.lead = null;
         this.bouldern = null;
@@ -35,11 +36,12 @@ class AboutController {
         this.dehnen = null;
         this.campus = null;
         this.mentaltraining = null;
-        this.belastung = null;
+        this.belastung = '14';
         this.trainingszeit = null;
         this.zuege12 = null;
         this.zuege23 = null;
         this.zuege34 = null;
+        this.gefuehl = '1';
         this.sonstiges = null;
 
   this.today = function() {
@@ -147,6 +149,7 @@ class AboutController {
         this.$log.debug('zuege12: ' + this.zuege12);
         this.$log.debug('zuege23: ' + this.zuege23);
         this.$log.debug('zuege34: ' + this.zuege34);
+        this.$log.debug('gefuehl: ' + this.gefuel);
         this.$log.debug('sonstiges: ' + this.sonstiges);
 
         // add workout
@@ -167,11 +170,12 @@ class AboutController {
             "zuege23": this.zuege23,
             "zuege34": this.zuege34,
             "trainingszeit": this.trainingszeit,
+            "gefuehl": this.gefuehl,
             "sonstiges": this.sonstiges
         };
         this.workoutsService.addWorkout(dataObj);
 
-        this.ort = null;
+        this.ort = 'K44';
         this.schlaf = null;
         this.lead = null;
         this.bouldern = null;
@@ -179,14 +183,18 @@ class AboutController {
         this.dehnen = null;
         this.campus = null;
         this.mentaltraining = null;
-        this.belastung = null;
+        this.belastung = '14';
         this.trainingszeit = null;
         this.zuege12 = null;
         this.zuege23 = null;
         this.zuege34 = null;
+        this.gefuehl = '1';
         this.sonstiges = null;
 
         this.workoutForm.$setPristine();
+
+        // navigate home...
+        this.$state.go('home');
     }
 
 }

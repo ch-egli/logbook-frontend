@@ -16,9 +16,20 @@ let homeModule = angular.module('home', [
     .config(/*@ngInject*/($stateProvider, $urlRouterProvider) => {
         $urlRouterProvider.otherwise('/');
 
-        $stateProvider.state('home', {
-            url: '/', template: '<home></home>'
-        });
+        $stateProvider
+            .state('home', {
+                url: '/', template: '<home></home>',
+                resolve: {
+                    loggedIn: function(oAuthService) {
+                            return oAuthService.isLoggedIn();
+                        }
+                    },
+                onEnter: function($state, loggedIn) {
+                    if (!loggedIn) {
+                        $state.go('login');
+                    }
+                }
+            });
     })
 
     .directive('home', homeComponent);
