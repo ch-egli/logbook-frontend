@@ -49,7 +49,24 @@ angular.module('app', [
         //resourceServerUrl: '/',
         //authServerUrl: '/',
         authClientId: 'logbookAngularClient',
-        authClientSecret: 'myAbcdghij9876Secret'
+        authClientSecret: 'myAbcdghij9876Secret',
+
+        workoutDefaultOrt1: 'K44',
+        workoutDefaultOrt2: null,
+        workoutDefaultSchlaf: null,
+        workoutDefaultLead: null,
+        workoutDefaultBouldern: null,
+        workoutDefaultKraftraum: null,
+        workoutDefaultDehnen: null,
+        workoutDefaultCampus: null,
+        workoutDefaultMentaltraining: null,
+        workoutDefaultBelastung: '14',
+        workoutDefaultTrainingszeit: null,
+        workoutDefaultZuege12: null,
+        workoutDefaultZuege23: null,
+        workoutDefaultZuege34: null,
+        workoutDefaultGefuehl: '1',
+        workoutDefaultSonstiges: null
     })
     // Die App als Direktive exportieren
     .directive('app', AppComponent);
