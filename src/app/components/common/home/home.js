@@ -8,7 +8,9 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-import homeComponent from './home.component';
+import template from './home.html';
+import controller from './home.controller';
+
 
 let homeModule = angular.module('home', [
     uiRouter
@@ -32,6 +34,9 @@ let homeModule = angular.module('home', [
             });
     })
 
-    .directive('home', homeComponent);
+    .component('home', {
+        template,
+        controller
+    });
 
 export default homeModule;

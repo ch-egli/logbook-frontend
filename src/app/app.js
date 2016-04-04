@@ -13,7 +13,7 @@ import ngResource from 'angular-resource';
 import ngCookies from 'angular-cookies';
 import ngTranslate from 'angular-translate';
 import ngTranslateStaticFilesLoader from 'angular-translate-loader-static-files';
-import uiBootstrap from 'angular-bootstrap-npm';
+import uiBootstrap from 'angular-ui-bootstrap';
 
 // SBB Imports
 import 'esta-webjs-style/build/css/style.css';

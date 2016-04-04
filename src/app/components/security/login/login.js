@@ -10,7 +10,8 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-import loginComponent from './login.component';
+import template from './login.html';
+import controller from './login.controller';
 
 let loginModule = angular.module('login', [
     uiRouter
@@ -34,7 +35,9 @@ let loginModule = angular.module('login', [
             });
     })
 
-
-    .directive('login', loginComponent);
+    .component('login', {
+        template,
+        controller
+    });
 
 export default loginModule;

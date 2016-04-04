@@ -9,7 +9,8 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 
-import woNewComponent from './wo-new.component';
+import template from './wo-new.html';
+import controller from './wo-new.controller';
 import './wo-new.css';
 
 let woNewModule = angular.module('wo-new', [
@@ -21,6 +22,9 @@ let woNewModule = angular.module('wo-new', [
         });
     })
 
-    .directive('wo-new', woNewComponent);
+    .component('wo-new', {
+        template,
+        controller
+    });
 
 export default woNewModule;

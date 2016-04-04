@@ -8,7 +8,9 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 
-import themeComponent from './theme.component';
+import template from './theme.html';
+import controller from './theme.controller';
+
 
 let themeModule = angular.module('theme', [
     uiRouter
@@ -21,6 +23,9 @@ let themeModule = angular.module('theme', [
         });
     })
 
-    .directive('theme', themeComponent);
+    .component('theme', {
+        template,
+        controller
+    });
 
 export default themeModule;
