@@ -1,11 +1,11 @@
 /**
- * Definition des About-Controllers
+ * Definition des WoNew-Controllers
  *
  * @author Christian Egli
  * @version: 0.0.1
  * @since 28.01.2016
  */
-class AboutController {
+class WoNewController {
     /*@ngInject*/
     constructor(workoutsService, oAuthService, config, $log, $state) {
         this.workoutsService = workoutsService;
@@ -209,4 +209,4 @@ class AboutController {
 
 }
 
-export default AboutController;
+export default WoNewController;

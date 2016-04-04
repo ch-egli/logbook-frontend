@@ -1,19 +1,19 @@
 /**
- * Unit-Tests About
+ * Unit-Tests WoNew
  *
  * @author Christian Egli
  * @version: 0.0.1
  * @since 28.01.2016
  */
-import AboutModule from './about';
-import AboutController from './about.controller';
-import AboutComponent from './about.component';
-import AboutTemplate from './about.html';
+import WoNewModule from './wo-new';
+import WoNewController from './wo-new.controller';
+import WoNewComponent from './wo-new.component';
+import WoNewTemplate from './wo-new.html';
 
-describe('About', () => {
+describe('WoNew', () => {
     let $rootScope, makeController, translateMock;
 
-    beforeEach(window.module(AboutModule.name));
+    beforeEach(window.module(WoNewModule.name));
     beforeEach(inject((_$rootScope_, _$log_) => {
         $rootScope = _$rootScope_;
 
@@ -23,7 +23,7 @@ describe('About', () => {
         };
 
         makeController = () => {
-            return new AboutController(translateMock, {
+            return new WoNewController(translateMock, {
                 getAllPosts: function () {
                     return [{
                         postId: 1, title: 'hi 1'
@@ -42,9 +42,9 @@ describe('About', () => {
     });
 
     describe('Controller', () => {
-        it('has a name property [aboutMessage]', () => {
+        it('has a name property [woNewMessage]', () => {
             let controller = makeController();
-            expect(controller.aboutMessage).toBe('Über dieses Template');
+            expect(controller.woNewMessage).toBe('Über dieses Template');
         });
 
         it('has a name property [posts]', () => {
@@ -71,28 +71,28 @@ describe('About', () => {
     });
 
     describe('Template', () => {
-        it('has name in template [aboutMessage]', () => {
-            expect(AboutTemplate).toMatch(/{{\s?vm\.aboutMessage\s?}}/g);
+        it('has name in template [woNewMessage]', () => {
+            expect(WoNewTemplate).toMatch(/{{\s?vm\.wo-newMessage\s?}}/g);
         });
         it('has name in template [posts.length]', () => {
-            expect(AboutTemplate).toMatch(/{{\s?vm\.posts\.length\s?}}/g);
+            expect(WoNewTemplate).toMatch(/{{\s?vm\.posts\.length\s?}}/g);
         });
         it('has name in template [vm.posts[0].title]', () => {
-            expect(AboutTemplate).toMatch(/{{\s?vm\.posts\[0\]\.title\s?}}/g);
+            expect(WoNewTemplate).toMatch(/{{\s?vm\.posts\[0\]\.title\s?}}/g);
         });
         it('has name in template [vm.postById.id]', () => {
-            expect(AboutTemplate).toMatch(/{{\s?vm\.postById\.id\s?}}/g);
+            expect(WoNewTemplate).toMatch(/{{\s?vm\.postById\.id\s?}}/g);
         });
         it('has name in template [vm.postById.title]', () => {
-            expect(AboutTemplate).toMatch(/{{\s?vm\.postById\.title\s?}}/g);
+            expect(WoNewTemplate).toMatch(/{{\s?vm\.postById\.title\s?}}/g);
         });
     });
 
     describe('Component', () => {
-        let component = new AboutComponent();
+        let component = new WoNewComponent();
 
         it('includes the intended template', () => {
-            expect(component.template).toBe(AboutTemplate);
+            expect(component.template).toBe(WoNewTemplate);
         });
 
         it('uses `controllerAs` syntax', () => {
@@ -100,7 +100,7 @@ describe('About', () => {
         });
 
         it('invokes the right controller', () => {
-            expect(component.controller).toBe(AboutController);
+            expect(component.controller).toBe(WoNewController);
         });
     });
 });
