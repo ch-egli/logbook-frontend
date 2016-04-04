@@ -25,7 +25,7 @@ class OAuthInterceptorService {
             service.$cookies.remove('auth');
             service.$location.path('/login');
         } else {
-            throw res;
+            return service.$q.reject(res);
         }
     }
 }
