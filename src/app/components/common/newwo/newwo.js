@@ -1,5 +1,5 @@
 /**
- * Definition der WoNew-Komponente
+ * Definition der NewWo-Komponente
  *
  * @author Christian Egli
  * @version: 0.0.1
@@ -9,22 +9,22 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 
-import template from './wo-new.html';
-import controller from './wo-new.controller';
-import './wo-new.css';
+import template from './newwo.html';
+import controller from './newwo.controller';
+import './newwo.css';
 
-let woNewModule = angular.module('wo-new', [
+let newWoModule = angular.module('newwo', [
     uiRouter, uiBootstrap
 ])
     .config(/*@ngInject*/($stateProvider) => {
-        $stateProvider.state('wo-new', {
-            url: '/wo-new', template: '<wo-new></wo-new>'
+        $stateProvider.state('newwo', {
+            url: '/newwo', template: '<newwo></newwo>'
         });
     })
 
-    .component('wo-new', {
+    .component('newwo', {
         template,
         controller
     });
 
-export default woNewModule;
+export default newWoModule;

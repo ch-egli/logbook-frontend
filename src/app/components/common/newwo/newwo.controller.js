@@ -1,11 +1,11 @@
 /**
- * Definition des WoNew-Controllers
+ * Definition des NewWo-Controllers
  *
  * @author Christian Egli
  * @version: 0.0.1
  * @since 28.01.2016
  */
-class WoNewController {
+class NewWoController {
     /*@ngInject*/
     constructor(workoutsService, oAuthService, config, $log, $state) {
         this.workoutsService = workoutsService;
@@ -209,4 +209,4 @@ class WoNewController {
 
 }
 
-export default WoNewController;
+export default NewWoController;
