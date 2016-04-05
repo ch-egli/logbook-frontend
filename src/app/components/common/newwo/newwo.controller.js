@@ -15,7 +15,6 @@ class NewWoController {
         this.oAuthService = oAuthService;
         this.config = config;
 
-
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
 
@@ -167,7 +166,6 @@ class NewWoController {
             "datum": this.datum,
             "ort": this.ort2 != null ? this.ort2 : this.ort1,
             "schlaf": this.schlaf,
-            "gefuehl": this.gefuehl,
             "lead": this.lead === true ? 1 : null,
             "bouldern": this.bouldern === true ? 1 : null,
             "kraftraum": this.kraftraum === true ? 1 : null,
