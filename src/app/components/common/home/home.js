@@ -22,10 +22,12 @@ let homeModule = angular.module('home', [
             .state('home', {
                 url: '/', template: '<home></home>',
                 resolve: {
+                    /*@ngInject*/
                     loggedIn: function(oAuthService) {
                             return oAuthService.isLoggedIn();
                         }
                     },
+                /*@ngInject*/
                 onEnter: function($state, loggedIn) {
                     if (!loggedIn) {
                         $state.go('login');

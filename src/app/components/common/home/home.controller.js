@@ -6,6 +6,7 @@
  * @since 28.01.2016
  */
 class HomeController {
+    /*@ngInject*/
     constructor(workoutsService, oAuthService) {
         this.workoutsService = workoutsService;
         this.oAuthService = oAuthService;
