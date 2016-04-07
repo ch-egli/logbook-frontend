@@ -52,15 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ort1">Ort</label>
-                    <select class="form-control" id="ort1" ng-model="$ctrl.ort1">
-                        <option>K44</option>
-                        <option>Matten</option>
-                        <option>Griffbar</option>
-                        <option>O'Bloc</option>
-                        <option>Magnet</option>
-                        <option>Klettertreff Thun</option>
-                        <option>Anderer Ort:</option>
-                    </select>
+                    <select class="form-control" id="ort1" ng-model="$ctrl.ort1" ng-options="item for item in $ctrl.workoutLocations"/>
                     <input type="text" class="form-control" id="ort2" ng-show="$ctrl.ort1 === 'Anderer Ort:'" ng-model="$ctrl.ort2">
                 </div>
                 <div class="checkbox">

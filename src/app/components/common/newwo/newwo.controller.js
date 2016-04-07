@@ -18,6 +18,8 @@ class NewWoController {
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
 
+        this.workoutLocations = this.config.workoutLocations;
+
         this.workoutForm = {};
 
         this.username = null;
@@ -37,6 +39,7 @@ class NewWoController {
         this.dehnen = this.config.workoutDefaultDehnen;
         this.campus = this.config.workoutDefaultCampus;
         this.mentaltraining = this.config.workoutDefaultMentaltraining;
+        this.geraete = this.config.workoutDefaultGeraete;
         this.belastung = this.config.workoutDefaultBelastung;
         this.trainingszeit = this.config.workoutDefaultTrainingszeit;
         this.zuege12 = this.config.workoutDefaultZuege12;
@@ -153,6 +156,7 @@ class NewWoController {
         this.$log.debug('dehnen: ' + this.dehnen);
         this.$log.debug('campus: ' + this.campus);
         this.$log.debug('mentaltraining: ' + this.mentaltraining);
+        this.$log.debug('geraete: ' + this.geraete);
         this.$log.debug('belastung: ' + this.belastung);
         this.$log.debug('zuege12: ' + this.zuege12);
         this.$log.debug('zuege23: ' + this.zuege23);
@@ -172,6 +176,7 @@ class NewWoController {
             "dehnen": this.dehnen === true ? 1 : null,
             "campus": this.campus === true ? 1 : null,
             "mentaltraining": this.mentaltraining === true ? 1 : null,
+            "geraete": this.geraete === true ? 1 : null,
             "belastung": this.belastung,
             "zuege12": this.zuege12,
             "zuege23": this.zuege23,
@@ -191,6 +196,7 @@ class NewWoController {
         this.dehnen = this.config.workoutDefaultDehnen;
         this.campus = this.config.workoutDefaultCampus;
         this.mentaltraining = this.config.workoutDefaultMentaltraining;
+        this.geraete = this.config.workoutDefaultGeraete;
         this.belastung = this.config.workoutDefaultBelastung;
         this.trainingszeit = this.config.workoutDefaultTrainingszeit;
         this.zuege12 = this.config.workoutDefaultZuege12;

@@ -60,13 +60,16 @@ angular.module('app', [
         workoutDefaultDehnen: null,
         workoutDefaultCampus: null,
         workoutDefaultMentaltraining: null,
+        workoutDefaultGeraete: null,
         workoutDefaultBelastung: '14',
         workoutDefaultTrainingszeit: null,
         workoutDefaultZuege12: null,
         workoutDefaultZuege23: null,
         workoutDefaultZuege34: null,
         workoutDefaultGefuehl: '1',
-        workoutDefaultSonstiges: null
+        workoutDefaultSonstiges: null,
+
+        workoutLocations: ["K44", "Matten", "Griffbar", "O'Bloc", "Magnet", "Klettertreff", "Anderer Ort:"]
     })
     // Die App als Direktive exportieren
     .directive('app', AppComponent);

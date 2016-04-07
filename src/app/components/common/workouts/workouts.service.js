@@ -46,6 +46,17 @@ class WorkoutsService {
             alert( "failure message: " + JSON.stringify({data: data}));
         });
     }
+
+    editWorkout(workout) {
+        let service = this;
+        let res = this.$http.put(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts/' + workout.id, workout);
+        res.success(function(data, status, headers, config) {
+            console.log('PUT works: ' + status);
+        });
+        res.error(function(data, status, headers, config) {
+            alert( "PUT failure message: " + JSON.stringify({data: data}));
+        });
+    }
 }
 
 export default WorkoutsService;

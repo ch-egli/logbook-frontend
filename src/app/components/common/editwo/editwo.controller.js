@@ -13,29 +13,57 @@ class EditWoController {
         this.$state = $state;
         this.$http = $http;
 
-        this.id = $stateParams.id;
-        this.$log.debug('workout-id: ' + this.id);
-
         this.oAuthService = oAuthService;
         this.config = config;
 
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
 
-        this.workoutForm = {};
+        this.workoutLocations = this.config.workoutLocations;
 
-        this.username = null;
+        this.workoutForm = {};
+        this.woData = {};
+        this.woData.id = $stateParams.id;
+
+        //this.id = $stateParams.id;
+        this.$log.debug('workout-id: ' + this.woData.id);
+
+        this.woData.username = null;
         let authData = this.oAuthService._getAuthData();
         if (authData !== null) {
-            this.username = authData.name;
+            this.woData.username = authData.name;
         }
-        this.$log.debug('username (in constructor): ' + this.username);
+        this.$log.debug('username (in constructor): ' + this.woData.username);
 
         let that = this;
-        let res = this.$http.get(this.config.resourceServerUrl + 'v1/users/' + this.username + '/workouts/' + this.id);
+        let res = this.$http.get(this.config.resourceServerUrl + 'v1/users/' + this.woData.username + '/workouts/' + this.woData.id);
         res.success(function(data, status, headers, config) {
-            console.log('It works: ' + status);
-            that.schlaf = data.schlaf;
+            console.log('got data: ' + status);
+            that.woData.datum = data.datum;
+            if (that.workoutLocations.indexOf(data.ort) > -1) {
+                that.woData.ort1 = data.ort;
+                that.woData.ort2 = null;
+            } else {
+                that.woData.ort1 = that.workoutLocations[that.workoutLocations.length - 1];
+                that.woData.ort2 = data.ort;
+            }
+
+            that.woData.ort = data.ort;
+            that.woData.schlaf = data.schlaf;
+            that.woData.lead = data.lead ? true : false;
+            that.woData.bouldern = data.bouldern ? true : false;
+            that.woData.kraftraum = data.kraftraum ? true : false;
+            that.woData.dehnen = data.dehnen ? true : false;
+            that.woData.campus = data.campus ? true : false;
+            that.woData.mentaltraining = data.mentaltraining ? true : false;
+            that.woData.geraete = data.geraete ? true : false;
+            that.woData.belastung = '' + data.belastung;
+            that.woData.zuege12 = data.zuege12;
+            that.woData.zuege23 = data.zuege23;
+            that.woData.zuege34 = data.zuege34;
+            that.woData.trainingszeit = data.trainingszeit;
+            that.woData.gefuehl = '' + data.gefuehl;
+            that.woData.sonstiges = data.sonstiges;
         });
         res.error(function(data, status, headers, config) {
             alert( "failure message: " + JSON.stringify({data: data}));
@@ -133,46 +161,49 @@ class EditWoController {
     }
 
     submitWorkout() {
-        this.$log.debug('username: ' + this.username);
-        this.$log.debug('datum: ' + this.datum);
-        this.$log.debug('ort1: ' + this.ort1);
-        this.$log.debug('ort2: ' + this.ort2);
-        this.$log.debug('schlaf: ' + this.schlaf);
-        this.$log.debug('lead: ' + this.lead);
-        this.$log.debug('bouldern: ' + this.bouldern);
-        this.$log.debug('kraftraum: ' + this.kraftraum);
-        this.$log.debug('dehnen: ' + this.dehnen);
-        this.$log.debug('campus: ' + this.campus);
-        this.$log.debug('mentaltraining: ' + this.mentaltraining);
-        this.$log.debug('belastung: ' + this.belastung);
-        this.$log.debug('zuege12: ' + this.zuege12);
-        this.$log.debug('zuege23: ' + this.zuege23);
-        this.$log.debug('zuege34: ' + this.zuege34);
-        this.$log.debug('gefuehl: ' + this.gefuehl);
-        this.$log.debug('sonstiges: ' + this.sonstiges);
+        this.$log.debug('id: ' + this.woData.id);
+        this.$log.debug('benutzername: ' + this.woData.username);
+        this.$log.debug('datum: ' + this.woData.datum);
+        this.$log.debug('ort1: ' + this.woData.ort1);
+        this.$log.debug('ort2: ' + this.woData.ort2);
+        this.$log.debug('schlaf: ' + this.woData.schlaf);
+        this.$log.debug('lead: ' + this.woData.lead);
+        this.$log.debug('bouldern: ' + this.woData.bouldern);
+        this.$log.debug('kraftraum: ' + this.woData.kraftraum);
+        this.$log.debug('dehnen: ' + this.woData.dehnen);
+        this.$log.debug('campus: ' + this.woData.campus);
+        this.$log.debug('mentaltraining: ' + this.woData.mentaltraining);
+        this.$log.debug('geraete: ' + this.woData.geraete);
+        this.$log.debug('belastung: ' + this.woData.belastung);
+        this.$log.debug('zuege12: ' + this.woData.zuege12);
+        this.$log.debug('zuege23: ' + this.woData.zuege23);
+        this.$log.debug('zuege34: ' + this.woData.zuege34);
+        this.$log.debug('gefuehl: ' + this.woData.gefuehl);
+        this.$log.debug('sonstiges: ' + this.woData.sonstiges);
 
         // add workout
         let dataObj = {
-            "benutzername": this.username,
-            "datum": this.datum,
-            "ort": this.ort2 != null ? this.ort2 : this.ort1,
-            "schlaf": this.schlaf,
-            "lead": this.lead === true ? 1 : null,
-            "bouldern": this.bouldern === true ? 1 : null,
-            "kraftraum": this.kraftraum === true ? 1 : null,
-            "dehnen": this.dehnen === true ? 1 : null,
-            "campus": this.campus === true ? 1 : null,
-            "mentaltraining": this.mentaltraining === true ? 1 : null,
-            "belastung": this.belastung,
-            "zuege12": this.zuege12,
-            "zuege23": this.zuege23,
-            "zuege34": this.zuege34,
-            "trainingszeit": this.trainingszeit,
-            "gefuehl": this.gefuehl,
-            "sonstiges": this.sonstiges
+            "id": this.woData.id,
+            "benutzername": this.woData.username,
+            "datum": this.woData.datum,
+            "ort": this.woData.ort2 != null ? this.woData.ort2 : this.woData.ort1,
+            "schlaf": this.woData.schlaf,
+            "lead": this.woData.lead === true ? 1 : null,
+            "bouldern": this.woData.bouldern === true ? 1 : null,
+            "kraftraum": this.woData.kraftraum === true ? 1 : null,
+            "dehnen": this.woData.dehnen === true ? 1 : null,
+            "campus": this.woData.campus === true ? 1 : null,
+            "mentaltraining": this.woData.mentaltraining === true ? 1 : null,
+            "geraete": this.woData.geraete === true ? 1 : null,
+            "belastung": this.woData.belastung,
+            "zuege12": this.woData.zuege12,
+            "zuege23": this.woData.zuege23,
+            "zuege34": this.woData.zuege34,
+            "trainingszeit": this.woData.trainingszeit,
+            "gefuehl": this.woData.gefuehl,
+            "sonstiges": this.woData.sonstiges
         };
-        //this.workoutsService.addWorkout(dataObj);
-
+        this.workoutsService.editWorkout(dataObj);
 
         // navigate home...
         this.$state.go('home');
