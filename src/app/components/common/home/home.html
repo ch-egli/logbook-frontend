@@ -18,6 +18,7 @@
                         <th>Benutzer</th>
                         <th>Ort</th>
                         <th>Zeit (Minuten)</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,7 @@
                         <td>{{ w.benutzername }}</td>
                         <td>{{ w.ort }}</td>
                         <td>{{ w.trainingszeit }}</td>
+                        <td><a ui-sref="editwo({id: w.id})">Bearbeiten</a></td>
                     </tr>
                 </tbody>
             </table>
