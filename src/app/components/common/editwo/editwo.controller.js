@@ -171,12 +171,11 @@ class EditWoController {
             "gefuehl": this.gefuehl,
             "sonstiges": this.sonstiges
         };
-        this.workoutsService.addWorkout(dataObj);
+        //this.workoutsService.addWorkout(dataObj);
 
 
         // navigate home...
         this.$state.go('home');
-        this.$state.reload();
     }
 
 }

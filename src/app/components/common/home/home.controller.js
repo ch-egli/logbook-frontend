@@ -14,10 +14,16 @@ class HomeController {
         this.title = 'RZ-BeO Trainings-Logbook';
         this.welcomeMessage = 'Herzlich Willkommen, ' + this.oAuthService.getFirstname();
 
+        this.username = this.oAuthService.getUsername();
+
         this.workoutForm = {};
 
         this.workouts = this.workoutsService.getAllWorkouts();
-      }
+    }
+
+    isMyWorkout(workout) {
+        return this.username === workout.benutzername;
+    }
 
 }
 

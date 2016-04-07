@@ -27,7 +27,7 @@
                         <td>{{ w.benutzername }}</td>
                         <td>{{ w.ort }}</td>
                         <td>{{ w.trainingszeit }}</td>
-                        <td><a ui-sref="editwo({id: w.id})">Bearbeiten</a></td>
+                        <td><a ng-show="$ctrl.isMyWorkout(w)" ui-sref="editwo({id: w.id})">Bearbeiten</a></td>
                     </tr>
                 </tbody>
             </table>
