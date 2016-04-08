@@ -211,6 +211,10 @@ class NewWoController {
         this.$state.go('home');
     }
 
+    cancelWorkout() {
+        // navigate home...
+        this.$state.go('home');
+    }
 }
 
 export default NewWoController;

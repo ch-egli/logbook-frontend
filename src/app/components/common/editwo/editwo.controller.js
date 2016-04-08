@@ -179,6 +179,11 @@ class EditWoController {
         this.$state.go('home');
     }
 
+    cancelWorkout() {
+        // navigate home...
+        this.$state.go('home');
+    }
+
 }
 
 export default EditWoController;
