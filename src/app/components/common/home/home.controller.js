@@ -25,6 +25,11 @@ class HomeController {
         return this.username === workout.benutzername;
     }
 
+    deleteWorkout(workout) {
+        this.workoutsService.deleteWorkout(workout);
+        this.$state.go('home');
+    }
+
 }
 
 export default HomeController;

@@ -104,6 +104,18 @@ class WorkoutsService {
         });
     }
 
+    deleteWorkout(workout) {
+        let service = this;
+        this._setAuthorizationHeader();
+        let res = this.$http.delete(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts/' + workout.id);
+        res.success(function(data, status, headers, config) {
+            console.log('DELETE works: ' + status);
+        });
+        res.error(function(data, status, headers, config) {
+            alert( "DELETE failure message: " + JSON.stringify({data: data}));
+        });
+    }
+
     _setAuthorizationHeader() {
         this.$http.defaults.headers.common['Authorization'] = this.authData.authheader;
     }
