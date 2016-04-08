@@ -7,10 +7,15 @@
  */
 class NavbarController {
     /*@ngInject*/
-    constructor(oAuthService) {
+    constructor(oAuthService, workoutsService) {
         this.name = 'navbar';
         this.navCollapsed = true;
         this.oAuthService = oAuthService;
+        this.workoutsService = workoutsService;
+    }
+
+    exportToExcel() {
+        this.workoutsService.exportWorkoutsToExcel();
     }
 }
 

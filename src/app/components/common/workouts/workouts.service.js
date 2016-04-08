@@ -12,13 +12,13 @@ class WorkoutsService {
         this.config = config;
         this.$http = $http;
         this.$resource = $resource;
+        this.oAuthService = oAuthService;
 
-        this.authData = oAuthService.getAuthData();
+        this.authData = this.oAuthService.getAuthData();
         if (this.authData == null) {
             this.authData = {};
         }
-        this.username = this.authData.name;
-        this.$log.debug('username (in WorkoutsService constructor): ' + this.username);
+        this.$log.debug('username (in WorkoutsService constructor): ' + this.authData.name);
     }
 
     /**
@@ -42,7 +42,7 @@ class WorkoutsService {
         let woData = {};
         if (id) {
             this._setAuthorizationHeader();
-            let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/' + service.username + '/workouts/' + id);
+            let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/' + service.authData.name + '/workouts/' + id);
             res.success(function(data, status, headers, config) {
                 console.log('got data: ' + status);
                 if (data) {
@@ -114,6 +114,21 @@ class WorkoutsService {
         res.error(function(data, status, headers, config) {
             alert( "DELETE failure message: " + JSON.stringify({data: data}));
         });
+    }
+
+    exportWorkoutsToExcel() {
+        let service = this;
+        this._setAuthorizationHeader();
+
+        // TODO get current year...
+        let year = 2016;
+        let downloadUrl = service.config.resourceServerUrl + 'v1/user/' + service.authData.name + '/excelresults/' + year;
+
+        // with jQuery: $("body").append("<iframe src='" + downloadUrl + "' style='display: none;' ></iframe>");
+        let iframe = document.createElement("iframe");
+        iframe.setAttribute("src", downloadUrl);
+        iframe.setAttribute("style", "display: none");
+        document.body.appendChild(iframe);
     }
 
     _setAuthorizationHeader() {
