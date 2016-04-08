@@ -23,7 +23,7 @@ class NewWoController {
         this.workoutForm = {};
 
         this.username = null;
-        let authData = this.oAuthService._getAuthData();
+        let authData = this.oAuthService.getAuthData();
         if (authData !== null) {
             this.username = authData.name;
         }

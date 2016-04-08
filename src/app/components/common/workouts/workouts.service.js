@@ -7,14 +7,18 @@
  */
 class WorkoutsService {
     /*@ngInject*/
-    constructor(config, $resource, $http) {
-        //this.$log = $log;
+    constructor(config, oAuthService, $resource, $http, $log) {
+        this.$log = $log;
         this.config = config;
-        //this.$log.debug('workout config: ' + this.config);
-        this.Workouts = $resource(config.resourceServerUrl + 'v1/public/lastworkouts');
-        //this.Workouts = $resource('http://localhost:8181/workouts/:workoutId', {workoutId: '@id'});
-        //this.Workouts = $resource('http://54.93.84.56:8181/workouts/:workoutId', {workoutId: '@id'});
         this.$http = $http;
+        this.$resource = $resource;
+
+        this.authData = oAuthService.getAuthData();
+        if (this.authData == null) {
+            this.authData = {};
+        }
+        this.username = this.authData.name;
+        this.$log.debug('username (in WorkoutsService constructor): ' + this.username);
     }
 
     /**
@@ -22,7 +26,10 @@ class WorkoutsService {
      * @returns {angular.resource.IResourceArray<T>}
      */
     getAllWorkouts() {
-        return this.Workouts.query();
+        let service = this;
+        this._setAuthorizationHeader();
+        let workouts = this.$resource(service.config.resourceServerUrl + 'v1/public/lastworkouts');
+        return workouts.query();
     }
 
     /**
@@ -31,13 +38,51 @@ class WorkoutsService {
      * @returns {*} Den Workout als Objekt
      */
     getWorkoutById(id) {
-        return this.Workouts.get({workoutId: id});
+        let service = this;
+        let woData = {};
+        if (id) {
+            this._setAuthorizationHeader();
+            let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/' + service.username + '/workouts/' + id);
+            res.success(function(data, status, headers, config) {
+                console.log('got data: ' + status);
+                if (data) {
+                    woData.datum = data.datum;
+                    if (service.config.workoutLocations.indexOf(data.ort) > -1) {
+                        woData.ort1 = data.ort;
+                        woData.ort2 = null;
+                    } else {
+                        woData.ort1 = service.config.workoutLocations[service.config.workoutLocations.length - 1];
+                        woData.ort2 = data.ort;
+                    }
+                    woData.ort = data.ort;
+                    woData.schlaf = data.schlaf;
+                    woData.lead = data.lead ? true : false;
+                    woData.bouldern = data.bouldern ? true : false;
+                    woData.kraftraum = data.kraftraum ? true : false;
+                    woData.dehnen = data.dehnen ? true : false;
+                    woData.campus = data.campus ? true : false;
+                    woData.mentaltraining = data.mentaltraining ? true : false;
+                    woData.geraete = data.geraete ? true : false;
+                    woData.belastung = '' + data.belastung;
+                    woData.zuege12 = data.zuege12;
+                    woData.zuege23 = data.zuege23;
+                    woData.zuege34 = data.zuege34;
+                    woData.trainingszeit = data.trainingszeit;
+                    woData.gefuehl = '' + data.gefuehl;
+                    woData.sonstiges = data.sonstiges;
+                }
+                return woData;
+            });
+            res.error(function(data, status, headers, config) {
+                alert( "failure message: " + JSON.stringify({data: data}));
+            });
+        }
+        return woData;
     }
 
     addWorkout(workout) {
-        //let res = this.$http.post('http://54.93.84.56:8181/workouts', workout);
         let service = this;
-        //let res = this.$http.post('http://localhost:8181/' + 'v1/users/' + workout.benutzername + '/workouts', workout);
+        this._setAuthorizationHeader();
         let res = this.$http.post(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts', workout);
         res.success(function(data, status, headers, config) {
             console.log('It works: ' + status);
@@ -49,6 +94,7 @@ class WorkoutsService {
 
     editWorkout(workout) {
         let service = this;
+        this._setAuthorizationHeader();
         let res = this.$http.put(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts/' + workout.id, workout);
         res.success(function(data, status, headers, config) {
             console.log('PUT works: ' + status);
@@ -56,6 +102,10 @@ class WorkoutsService {
         res.error(function(data, status, headers, config) {
             alert( "PUT failure message: " + JSON.stringify({data: data}));
         });
+    }
+
+    _setAuthorizationHeader() {
+        this.$http.defaults.headers.common['Authorization'] = this.authData.authheader;
     }
 }
 

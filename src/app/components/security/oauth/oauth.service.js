@@ -32,7 +32,8 @@ class OAuthService {
             firstname: '',
             lastname: '',
             email: '',
-            phone: ''
+            phone: '',
+            authheader: ''
         }
     }
 
@@ -90,7 +91,7 @@ class OAuthService {
      * @returns {boolean} Eingeloggt?
      */
     isLoggedIn() {
-        return !!this._getAuthData().authenticated;
+        return !!this.getAuthData().authenticated;
     }
 
     /**
@@ -99,7 +100,7 @@ class OAuthService {
      */
     getUsername() {
         if (this.isLoggedIn()) {
-            return this._getAuthData().name;
+            return this.getAuthData().name;
         } else {
             return '';
         }
@@ -111,7 +112,7 @@ class OAuthService {
      */
     getFirstname() {
         if (this.isLoggedIn()) {
-            return this._getAuthData().firstname;
+            return this.getAuthData().firstname;
         } else {
             return '';
         }
@@ -134,15 +135,16 @@ class OAuthService {
             })
                 .success(userResponse => {
                     if (userResponse) {
-                        // add token as default header
-                        service.$http.defaults.headers.common['Authorization'] = 'Bearer ' + response.access_token;
-
                         this.user.authenticated = true;
                         this.user.roles = userResponse.rollen;
                         this.user.firstname = userResponse.vorname;
                         this.user.lastname = userResponse.nachname;
                         this.user.email = userResponse.email;
                         this.user.phone = userResponse.telefon;
+                        this.user.authheader = 'Bearer ' + response.access_token;
+
+                        // add token as default header
+                        service.$http.defaults.headers.common['Authorization'] = this.user.authheader;
 
                         service._setAuthData(this.user);
                         service.$location.path('/home');
@@ -188,9 +190,8 @@ class OAuthService {
     /**
      * Liest die authDaten aus dem Cookie.
      * @returns {*} AuthDaten oder {}.
-     * @private
      */
-    _getAuthData() {
+    getAuthData() {
         let cookie = this.$cookies.getObject('auth');
         if (cookie && cookie.authData) {
             return cookie.authData;

@@ -22,52 +22,22 @@ class EditWoController {
         this.workoutLocations = this.config.workoutLocations;
 
         this.workoutForm = {};
-        this.woData = {};
-        this.woData.id = $stateParams.id;
+        this.id = $stateParams.id;
 
         //this.id = $stateParams.id;
-        this.$log.debug('workout-id: ' + this.woData.id);
+        this.$log.debug('workout-id: ' + this.id);
 
-        this.woData.username = null;
-        let authData = this.oAuthService._getAuthData();
+        this.username = null;
+        let authData = this.oAuthService.getAuthData();
         if (authData !== null) {
-            this.woData.username = authData.name;
+            this.username = authData.name;
         }
-        this.$log.debug('username (in constructor): ' + this.woData.username);
+        this.$log.debug('username (in constructor): ' + this.username);
 
-        let that = this;
-        let res = this.$http.get(this.config.resourceServerUrl + 'v1/users/' + this.woData.username + '/workouts/' + this.woData.id);
-        res.success(function(data, status, headers, config) {
-            console.log('got data: ' + status);
-            that.woData.datum = data.datum;
-            if (that.workoutLocations.indexOf(data.ort) > -1) {
-                that.woData.ort1 = data.ort;
-                that.woData.ort2 = null;
-            } else {
-                that.woData.ort1 = that.workoutLocations[that.workoutLocations.length - 1];
-                that.woData.ort2 = data.ort;
-            }
+        this.woData = workoutsService.getWorkoutById(this.id);
+        this.woData.id = this.id;
+        this.woData.username = this.username;
 
-            that.woData.ort = data.ort;
-            that.woData.schlaf = data.schlaf;
-            that.woData.lead = data.lead ? true : false;
-            that.woData.bouldern = data.bouldern ? true : false;
-            that.woData.kraftraum = data.kraftraum ? true : false;
-            that.woData.dehnen = data.dehnen ? true : false;
-            that.woData.campus = data.campus ? true : false;
-            that.woData.mentaltraining = data.mentaltraining ? true : false;
-            that.woData.geraete = data.geraete ? true : false;
-            that.woData.belastung = '' + data.belastung;
-            that.woData.zuege12 = data.zuege12;
-            that.woData.zuege23 = data.zuege23;
-            that.woData.zuege34 = data.zuege34;
-            that.woData.trainingszeit = data.trainingszeit;
-            that.woData.gefuehl = '' + data.gefuehl;
-            that.woData.sonstiges = data.sonstiges;
-        });
-        res.error(function(data, status, headers, config) {
-            alert( "failure message: " + JSON.stringify({data: data}));
-        });
 
         /*
          * Start adding Angular UI Datepicker functions...
