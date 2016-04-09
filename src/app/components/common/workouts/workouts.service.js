@@ -7,17 +7,15 @@
  */
 class WorkoutsService {
     /*@ngInject*/
-    constructor(config, oAuthService, $resource, $http, $log) {
+    constructor(config, $resource, $http, $log, $cookies, $state) {
         this.$log = $log;
         this.config = config;
         this.$http = $http;
         this.$resource = $resource;
-        this.oAuthService = oAuthService;
+        this.$cookies = $cookies;
+        this.$state = $state;
+        this.authData = {};
 
-        this.authData = this.oAuthService.getAuthData();
-        if (this.authData == null) {
-            this.authData = {};
-        }
         this.$log.debug('username (in WorkoutsService constructor): ' + this.authData.name);
     }
 
@@ -27,7 +25,7 @@ class WorkoutsService {
      */
     getAllWorkouts() {
         let service = this;
-        this._setAuthorizationHeader();
+        this._getAuthData();
         let workouts = this.$resource(service.config.resourceServerUrl + 'v1/public/lastworkouts');
         return workouts.query();
     }
@@ -85,7 +83,8 @@ class WorkoutsService {
         this._setAuthorizationHeader();
         let res = this.$http.post(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts', workout);
         res.success(function(data, status, headers, config) {
-            console.log('It works: ' + status);
+            console.log('added workout with id: ' + data.id);
+            service.$state.reload();
         });
         res.error(function(data, status, headers, config) {
             alert( "failure message: " + JSON.stringify({data: data}));
@@ -97,7 +96,8 @@ class WorkoutsService {
         this._setAuthorizationHeader();
         let res = this.$http.put(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts/' + workout.id, workout);
         res.success(function(data, status, headers, config) {
-            console.log('PUT works: ' + status);
+            console.log('updated workout with id: ' + data.id);
+            service.$state.reload();
         });
         res.error(function(data, status, headers, config) {
             alert( "PUT failure message: " + JSON.stringify({data: data}));
@@ -109,7 +109,8 @@ class WorkoutsService {
         this._setAuthorizationHeader();
         let res = this.$http.delete(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts/' + workout.id);
         res.success(function(data, status, headers, config) {
-            console.log('DELETE works: ' + status);
+            console.log('deleted workout with id: ' + data.id);
+            service.$state.reload();
         });
         res.error(function(data, status, headers, config) {
             alert( "DELETE failure message: " + JSON.stringify({data: data}));
@@ -131,7 +132,17 @@ class WorkoutsService {
         document.body.appendChild(iframe);
     }
 
+    _getAuthData() {
+        let cookie = this.$cookies.getObject('auth');
+        if (cookie && cookie.authData) {
+            return cookie.authData;
+        } else {
+            return {};
+        }
+    }
+
     _setAuthorizationHeader() {
+        this.authData = this._getAuthData();
         this.$http.defaults.headers.common['Authorization'] = this.authData.authheader;
     }
 }

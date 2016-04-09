@@ -17,7 +17,9 @@
                         <th>Datum</th>
                         <th>Benutzer</th>
                         <th>Ort</th>
-                        <th>Zeit (Minuten)</th>
+<!--
+                        <th>Dauer</th>
+-->
                         <th></th>
                     </tr>
                 </thead>
@@ -26,7 +28,9 @@
                         <td>{{ w.datum }}</td>
                         <td>{{ w.benutzername }}</td>
                         <td>{{ w.ort }}</td>
+<!--
                         <td>{{ w.trainingszeit }}</td>
+-->
                         <td>
                             <span ng-show="$ctrl.isMyWorkout(w)">
                             <a ui-sref="editwo({id: w.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
