@@ -65,8 +65,12 @@
                     <label style="padding-right:10px;"><input id="geraete" type="checkbox" ng-model="$ctrl.geraete"> Geräte</label>
                 </div>
                 <div class="form-group">
-                    <label for="belastung">Belastung (6-20)</label>
-                    <select class="form-control" id="belastung" ng-model="$ctrl.belastung">
+                    <label for="trainingszeit">Dauer (Minuten)</label>
+                    <input type="number" class="form-control" id="trainingszeit" ng-model="$ctrl.woData.trainingszeit">
+                </div>
+                <div class="form-group">
+                    <label for="belastung">Belastung (6-20)</label>&nbsp;&nbsp;<a ng-click="#" title="Info"><span class="glyphicon glyphicon-info-sign"></span></a>
+                    <select class="form-control" id="belastung" ng-model="$ctrl.woData.belastung">
                         <option>20</option>
                         <option>19</option>
                         <option>18</option>
@@ -83,10 +87,6 @@
                         <option>7</option>
                         <option>6</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="trainingszeit">Trainingszeit (Minuten)</label>
-                    <input type="number" class="form-control" id="trainingszeit" ng-model="$ctrl.trainingszeit">
                 </div>
                 <div class="form-group">
                     <label for="zuege12">Anzahl Züge 1-2</label>
