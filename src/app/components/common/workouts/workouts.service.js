@@ -30,6 +30,16 @@ class WorkoutsService {
         return workouts.query();
     }
 
+    getWorkoutsByUser(username) {
+        let service = this;
+        this._setAuthorizationHeader();
+        if (username) {
+            let workouts = this.$resource(service.config.resourceServerUrl + 'v1/users/' + username + '/workouts/top/' + 8);
+            return workouts.query();
+        }
+        return {};
+    }
+
     /**
      * Liefert einen bestimmten Workout von der REST-Resource zurueck
      * @param id Die zu suchende workoutId

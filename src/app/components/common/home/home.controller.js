@@ -18,7 +18,10 @@ class HomeController {
 
         this.workoutForm = {};
 
+        this.filter = false;
+
         this.workouts = this.workoutsService.getAllWorkouts();
+        this.myWorkouts = this.workoutsService.getWorkoutsByUser(this.username);
     }
 
     isMyWorkout(workout) {
