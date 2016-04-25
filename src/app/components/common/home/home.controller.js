@@ -7,9 +7,10 @@
  */
 class HomeController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService) {
+    constructor(workoutsService, oAuthService, $uibModal) {
         this.workoutsService = workoutsService;
         this.oAuthService = oAuthService;
+        this.$uibModal = $uibModal;
 
         this.title = 'RZ-BeO Trainings-Logbook';
         this.welcomeMessage = 'Herzlich Willkommen, ' + this.oAuthService.getFirstname();
@@ -22,6 +23,15 @@ class HomeController {
 
         this.workouts = this.workoutsService.getAllWorkouts();
         this.myWorkouts = this.workoutsService.getWorkoutsByUser(this.username);
+
+                  this.open = function (size) {
+                     var modalInstance = $uibModal.open({
+                       animation: true,
+                       templateUrl: '/modal.html',
+                       size: size
+                     });
+                   };
+
     }
 
     isMyWorkout(workout) {

@@ -7,7 +7,7 @@
  */
 class EditWoController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, config, $log, $state, $stateParams, $http) {
+    constructor(workoutsService, oAuthService, config, $log, $state, $stateParams, $http, $uibModal) {
         this.workoutsService = workoutsService;
         this.$log = $log;
         this.$state = $state;
@@ -127,6 +127,22 @@ class EditWoController {
         /*
          * End Angular UI Datepicker functions...
          */
+
+          this.open = function (size) {
+/*
+             var modalInstance = $uibModal.open({
+               animation: true,
+               templateUrl: 'myModalContent.html',
+               controller: 'ModalInstanceCtrl',
+               size: size
+             });
+*/
+             var modalInstance = $uibModal.open({
+               animation: true,
+               template: '<img ng-src="./belastung.png" alt="Belastung Info">',
+               size: size
+             });
+           };
 
     }
 

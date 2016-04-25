@@ -9,6 +9,8 @@
 
         <div class="spacer"></div>
 
+        <a ng-click="$ctrl.open()" title="Info"><span class="glyphicon glyphicon-info-sign"></span></a>
+
         <div class="container">
             <h2>Letzte Trainingseinheiten</h2>
             <table class="table table-striped">
@@ -27,7 +29,7 @@
                         <td>{{ w.ort }}</td>
                         <td>
                             <span ng-show="$ctrl.isMyWorkout(w)">
-                                <a ui-sref="editwo({id: w.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
+                                <a ng-click="$ctrl.open()" ui-sref="editwo({id: w.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
                                 <a ng-click="$ctrl.deleteWorkout(w)" title="Loeschen"><span class="glyphicon glyphicon-remove"></span></a>
                             </span>
                         </td>

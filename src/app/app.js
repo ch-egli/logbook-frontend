@@ -44,10 +44,10 @@ angular.module('app', [
 
     // Globale Konfigurationeinstellungen
     .constant('config', {
-        //resourceServerUrl: 'http://localhost:8181/',
-        //authServerUrl: 'http://localhost:8181/',
-        resourceServerUrl: 'http://192.168.1.120:8181/',
-        authServerUrl: 'http://192.168.1.120:8181/',
+        resourceServerUrl: 'http://52.59.250.63:8181/',
+        authServerUrl: 'http://52.59.250.63:8181/',
+        //resourceServerUrl: 'http://192.168.1.120:8181/',
+        //authServerUrl: 'http://192.168.1.120:8181/',
         authClientId: 'logbookAngularClient',
         authClientSecret: 'myAbcdghij9876Secret',
 

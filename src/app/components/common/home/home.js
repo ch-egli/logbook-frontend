@@ -7,13 +7,14 @@
  */
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import uiBootstrap from 'angular-ui-bootstrap';
 
 import template from './home.html';
 import controller from './home.controller';
 
 
 let homeModule = angular.module('home', [
-    uiRouter
+    uiRouter, uiBootstrap
 ])
     .config(/*@ngInject*/($stateProvider, $urlRouterProvider) => {
         $urlRouterProvider.otherwise('/');
