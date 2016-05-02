@@ -43,7 +43,7 @@ class HomeController {
          }, function () {
              log.debug('Confirmation dialog has been dismissed');
          });
-    };
+    }
 
     isMyWorkout(workout) {
         return this.username === workout.benutzername;

@@ -5,18 +5,25 @@
  * @version: 0.0.1
  * @since 28.01.2016
  */
+import infoDialogTemplate from "../info/info.html"
+import infoDialogController from "../info/info.controller"
+import infoDialogImage from "../info/images/belastung.png"
+
 class NewWoController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, config, $log, $state) {
+    constructor(workoutsService, oAuthService, config, $log, $state, $uibModal) {
         this.workoutsService = workoutsService;
         this.$log = $log;
         this.$state = $state;
+        this.$uibModal = $uibModal;
 
         this.oAuthService = oAuthService;
         this.config = config;
 
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
+
+        this.showInfoImage = false;
 
         this.workoutLocations = this.config.workoutLocations;
 
@@ -214,6 +221,33 @@ class NewWoController {
     cancelWorkout() {
         // navigate home...
         this.$state.go('home');
+    }
+
+/*
+    showInfo() {
+         let log = this.$log;
+         let modalInstance = this.$uibModal.open({
+             animation: true,
+             template: '<info></info>'
+             //template: infoDialogTemplate,
+             //controller: infoDialogController
+         });
+
+         modalInstance.result.then(function () {
+             log.debug('confirmed');
+         }, function () {
+             log.debug('dismissed');
+         });
+    }
+*/
+
+    showInfo() {
+        this.showInfoImage = !this.showInfoImage;
+    }
+
+    getInfoImage() {
+        this.$log.debug('got info image...');
+        return infoDialogImage;
     }
 }
 

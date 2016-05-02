@@ -5,6 +5,8 @@
  * @version: 0.0.1
  * @since 28.01.2016
  */
+import infoDialogImage from "../info/images/belastung.png"
+
 class EditWoController {
     /*@ngInject*/
     constructor(workoutsService, oAuthService, config, $log, $state, $stateParams, $http, $uibModal) {
@@ -18,6 +20,8 @@ class EditWoController {
 
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
+
+        this.showInfoImage = false;
 
         this.workoutLocations = this.config.workoutLocations;
 
@@ -198,6 +202,15 @@ class EditWoController {
     cancelWorkout() {
         // navigate home...
         this.$state.go('home');
+    }
+
+    showInfo() {
+        this.showInfoImage = !this.showInfoImage;
+    }
+
+    getInfoImage() {
+        this.$log.debug('got info image...');
+        return infoDialogImage;
     }
 
 }
