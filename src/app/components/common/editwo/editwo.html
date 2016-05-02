@@ -2,17 +2,14 @@
 <main>
     <style>
         .full button span {
-            background-color: limegreen;
-            border-radius: 32px;
-            color: black;
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
         }
         .partially button span {
-            background-color: orange;
-            border-radius: 32px;
-            color: black;
-        }
-        .dTable {
-            display: table;
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
         }
     </style>
     <div class="container">
@@ -25,37 +22,35 @@
         </div>
         <div class="container">
 
-            <form name="$ctrl.workoutForm" class="form-horizontal">
+            <form name="$ctrl.workoutForm">
 
                 <div class="form-group">
-                    <label for="datum" class="col-xs-2 control-label">Datum</label>
-                    <div class="dTable col-xs-10">
+                    <label for="datum">Datum</label>
+                    <p class="input-group">
                         <input type="text"
-                            class="form-control"
-                            uib-datepicker-popup="dd.MM.yyyy"
-                            id="datum"
-                            ng-model="$ctrl.woData.datum"
-                            is-open="$ctrl.popup1.opened"
-                            datepicker-options="dateOptions"
-                            ng-required="true"
-                            close-text="Schliessen"/>
-                        <span class="input-group-btn">
-                            <button type="button"
-                                    class="btn btn-default"
-                                    ng-click="$ctrl.open1()">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </div>
+                               class="form-control"
+                               uib-datepicker-popup="dd.MM.yyyy"
+                               id="datum"
+                               ng-model="$ctrl.woData.datum"
+                               is-open="$ctrl.popup1.opened"
+                               datepicker-options="dateOptions"
+                               ng-required="true"
+                               close-text="Schliessen"/>
+                    <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="$ctrl.open1()">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                    </p>
                 </div>
                 <div class="form-group">
-                    <label for="ort1" class="col-xs-2 control-label">Ort</label>
-                    <div class="col-xs-10">
-                        <select class="form-control" id="ort1" ng-model="$ctrl.woData.ort1" ng-options="item for item in $ctrl.workoutLocations"/>
-                        <input type="text" class="form-control" id="ort2" ng-show="$ctrl.woData.ort1 === 'Anderer Ort:'" ng-model="$ctrl.woData.ort2">
-                    </div>
+                    <label for="ort1">Ort</label>
+                    <select class="form-control" id="ort1" ng-model="$ctrl.woData.ort1" ng-options="item for item in $ctrl.workoutLocations"/>
+                    <input type="text" class="form-control" id="ort2" ng-show="$ctrl.woData.ort1 === 'Anderer Ort:'" ng-model="$ctrl.woData.ort2">
                 </div>
-                <div class="checkbox col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
                     <label style="padding-right:10px;"><input id="lead" type="checkbox" ng-model="$ctrl.woData.lead"> Lead</label>
                     <label style="padding-right:10px;"><input id="bouldern" type="checkbox" ng-model="$ctrl.woData.bouldern"> Bouldern</label>
                     <label style="padding-right:10px;"><input id="kraftraum" type="checkbox" ng-model="$ctrl.woData.kraftraum"> Kraftraum</label>
@@ -65,74 +60,58 @@
                     <label style="padding-right:10px;"><input id="geraete" type="checkbox" ng-model="$ctrl.woData.geraete"> Geräte</label>
                 </div>
                 <div class="form-group">
-                    <label for="trainingszeit" class="col-xs-2 control-label">Dauer (Minuten)</label>
-                    <div class="col-xs-10">
-                        <input type="number" class="form-control" id="trainingszeit" ng-model="$ctrl.woData.trainingszeit">
-                    </div>
+                    <label for="trainingszeit">Dauer (Minuten)</label>
+                    <input type="number" class="form-control" id="trainingszeit" ng-model="$ctrl.woData.trainingszeit">
                 </div>
                 <div class="form-group">
-                    <label for="belastung" class="col-xs-2 control-label">Belastung (6-20)</label>&nbsp;&nbsp;<a ng-click="$ctrl.showInfo()" title="Info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    <div class="col-xs-10">
-                        <select class="form-control" id="belastung" ng-model="$ctrl.woData.belastung">
-                            <option>20</option>
-                            <option>19</option>
-                            <option>18</option>
-                            <option>17</option>
-                            <option>16</option>
-                            <option>15</option>
-                            <option>14</option>
-                            <option>13</option>
-                            <option>12</option>
-                            <option>11</option>
-                            <option>10</option>
-                            <option>9</option>
-                            <option>8</option>
-                            <option>7</option>
-                            <option>6</option>
-                        </select>
-                    </div>
+                    <label for="belastung">Belastung (6-20)</label>&nbsp;&nbsp;<a ng-click="$ctrl.showInfo()" title="Info"><span class="glyphicon glyphicon-info-sign"></span></a>
+                    <select class="form-control" id="belastung" ng-model="$ctrl.woData.belastung">
+                        <option>20</option>
+                        <option>19</option>
+                        <option>18</option>
+                        <option>17</option>
+                        <option>16</option>
+                        <option>15</option>
+                        <option>14</option>
+                        <option>13</option>
+                        <option>12</option>
+                        <option>11</option>
+                        <option>10</option>
+                        <option>9</option>
+                        <option>8</option>
+                        <option>7</option>
+                        <option>6</option>
+                    </select>
                 </div>
                 <img src="{{$ctrl.getInfoImage()}}" alt="Belastung Info" ng-show="$ctrl.showInfoImage" ng-click="$ctrl.showInfoImage = false;">
                 <div class="form-group">
-                    <label for="zuege12" class="col-xs-2 control-label">Anzahl Züge 1-2</label>
-                    <div class="col-xs-10">
-                        <input type="number" class="form-control" id="zuege12" ng-model="$ctrl.woData.zuege12">
-                    </div>
+                    <label for="zuege12">Anzahl Züge 1-2</label>
+                    <input type="number" class="form-control" id="zuege12" ng-model="$ctrl.woData.zuege12">
                 </div>
                 <div class="form-group">
-                    <label for="zuege23" class="col-xs-2 control-label">Anzahl Züge 2-3</label>
-                    <div class="col-xs-10">
-                        <input type="number" class="form-control" id="zuege23" ng-model="$ctrl.woData.zuege23">
-                    </div>
+                    <label for="zuege23">Anzahl Züge 2-3</label>
+                    <input type="number" class="form-control" id="zuege23" ng-model="$ctrl.woData.zuege23">
                 </div>
                 <div class="form-group">
-                    <label for="zuege34" class="col-xs-2 control-label">Anzahl Züge 3-4</label>
-                    <div class="col-xs-10">
-                        <input type="number" class="form-control" id="zuege34" ng-model="$ctrl.woData.zuege34">
-                    </div>
+                    <label for="zuege34">Anzahl Züge 3-4</label>
+                    <input type="number" class="form-control" id="zuege34" ng-model="$ctrl.woData.zuege34">
                 </div>
                 <div class="form-group">
-                    <label for="gefuehl" class="col-xs-2 control-label">Gefühl</label>
-                    <div class="col-xs-10">
-                        <select class="form-control" id="gefuehl" ng-model="$ctrl.woData.gefuehl">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                    </div>
+                    <label for="gefuehl">Gefühl</label>
+                    <select class="form-control" id="gefuehl" ng-model="$ctrl.woData.gefuehl">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="schlaf" class="col-xs-2 control-label">Schlaf (Stunden)</label>
-                    <div class="col-xs-10">
-                        <input type="number" class="form-control" id="schlaf" ng-model="$ctrl.woData.schlaf">
-                    </div>
+                    <label for="schlaf">Schlaf (Stunden)</label>
+                    <input type="number" class="form-control" id="schlaf" ng-model="$ctrl.woData.schlaf">
                 </div>
                 <div class="form-group">
-                    <label for="sonstiges" class="col-xs-2 control-label">Sonstiges</label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" id="sonstiges" ng-model="$ctrl.woData.sonstiges">
-                    </div>
+                    <label for="sonstiges">Sonstiges</label>
+                    <input type="text" class="form-control" id="sonstiges" ng-model="$ctrl.woData.sonstiges">
                 </div>
 
                 <button type="submit" class="btn btn-primary" ng-disabled="!$ctrl.woData.username" ng-click="$ctrl.submitWorkout()">OK</button>
