@@ -44,10 +44,10 @@ angular.module('app', [
 
     // Globale Konfigurationeinstellungen
     .constant('config', {
-        resourceServerUrl: 'http://52.59.250.63:8181/',
-        authServerUrl: 'http://52.59.250.63:8181/',
-        //resourceServerUrl: 'http://192.168.1.120:8181/',
-        //authServerUrl: 'http://192.168.1.120:8181/',
+        //resourceServerUrl: 'http://52.59.250.63:8181/',
+        //authServerUrl: 'http://52.59.250.63:8181/',
+        resourceServerUrl: 'http://192.168.1.120:8181/',
+        authServerUrl: 'http://192.168.1.120:8181/',
         authClientId: 'logbookAngularClient',
         authClientSecret: 'myAbcdghij9876Secret',
 
@@ -67,9 +67,10 @@ angular.module('app', [
         workoutDefaultZuege23: null,
         workoutDefaultZuege34: null,
         workoutDefaultGefuehl: '1',
+        workoutDefaultWettkampf: null,
         workoutDefaultSonstiges: null,
 
-        workoutLocations: ["K44", "Matten", "Griffbar", "O'Bloc", "Magnet", "Klettertreff", "Anderer Ort:"]
+        workoutLocations: ["K44", "Matten", "Griffbar", "O'Bloc", "Magnet", "Klettertreff", "Home", "Anderer Ort:"]
     })
     // Die App als Direktive exportieren
     .directive('app', AppComponent);

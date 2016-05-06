@@ -53,6 +53,7 @@ class NewWoController {
         this.zuege23 = this.config.workoutDefaultZuege23;;
         this.zuege34 = this.config.workoutDefaultZuege34;;
         this.gefuehl = this.config.workoutDefaultGefuehl;
+        this.wettkampf = this.config.workoutDefaultWettkampf;
         this.sonstiges = this.config.workoutDefaultSonstiges;
 
         /*
@@ -169,6 +170,7 @@ class NewWoController {
         this.$log.debug('zuege23: ' + this.zuege23);
         this.$log.debug('zuege34: ' + this.zuege34);
         this.$log.debug('gefuehl: ' + this.gefuehl);
+        this.$log.debug('wettkampf: ' + this.wettkampf);
         this.$log.debug('sonstiges: ' + this.sonstiges);
 
         // add workout
@@ -190,6 +192,7 @@ class NewWoController {
             "zuege34": this.zuege34,
             "trainingszeit": this.trainingszeit,
             "gefuehl": this.gefuehl,
+            "wettkampf": this.wettkampf,
             "sonstiges": this.sonstiges
         };
         this.workoutsService.addWorkout(dataObj);
@@ -210,6 +213,7 @@ class NewWoController {
         this.zuege23 = this.config.workoutDefaultZuege23;;
         this.zuege34 = this.config.workoutDefaultZuege34;;
         this.gefuehl = this.config.workoutDefaultGefuehl;
+        this.wettkampf = this.config.workoutDefaultWettkampf;
         this.sonstiges = this.config.workoutDefaultSonstiges;
 
         this.workoutForm.$setPristine();

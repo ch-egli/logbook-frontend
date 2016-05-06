@@ -77,6 +77,7 @@ class WorkoutsService {
                     woData.zuege34 = data.zuege34;
                     woData.trainingszeit = data.trainingszeit;
                     woData.gefuehl = '' + data.gefuehl;
+                    woData.wettkampf = data.wettkampf;
                     woData.sonstiges = data.sonstiges;
                 }
                 return woData;

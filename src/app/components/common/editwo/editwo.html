@@ -57,7 +57,9 @@
                     <label style="padding-right:10px;"><input id="dehnen" type="checkbox" ng-model="$ctrl.woData.dehnen"> Dehnen</label>
                     <label style="padding-right:10px;"><input id="campus" type="checkbox" ng-model="$ctrl.woData.campus"> Campus</label>
                     <label style="padding-right:10px;"><input id="mentaltraining" type="checkbox" ng-model="$ctrl.woData.mentaltraining"> Mentaltraining</label>
+<!--
                     <label style="padding-right:10px;"><input id="geraete" type="checkbox" ng-model="$ctrl.woData.geraete"> Geräte</label>
+-->
                 </div>
                 <div class="form-group">
                     <label for="trainingszeit">Dauer (Minuten)</label>
@@ -108,6 +110,10 @@
                 <div class="form-group">
                     <label for="schlaf">Schlaf (Stunden)</label>
                     <input type="number" class="form-control" id="schlaf" ng-model="$ctrl.woData.schlaf">
+                </div>
+                <div class="form-group">
+                    <label for="wettkampf">Wettkampf (z.B: EYC, MYCC, Trial, Bärecup, ...)</label>
+                    <input type="text" class="form-control" id="wettkampf" ng-model="$ctrl.woData.wettkampf">
                 </div>
                 <div class="form-group">
                     <label for="sonstiges">Sonstiges</label>

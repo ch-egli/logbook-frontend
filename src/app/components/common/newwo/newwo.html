@@ -62,7 +62,9 @@
                     <label style="padding-right:10px;"><input id="dehnen" type="checkbox" ng-model="$ctrl.dehnen"> Dehnen</label>
                     <label style="padding-right:10px;"><input id="campus" type="checkbox" ng-model="$ctrl.campus"> Campus</label>
                     <label style="padding-right:10px;"><input id="mentaltraining" type="checkbox" ng-model="$ctrl.mentaltraining"> Mentaltraining</label>
+<!--
                     <label style="padding-right:10px;"><input id="geraete" type="checkbox" ng-model="$ctrl.geraete"> Geräte</label>
+-->
                 </div>
                 <div class="form-group">
                     <label for="trainingszeit">Dauer (Minuten)</label>
@@ -113,6 +115,10 @@
                 <div class="form-group">
                     <label for="schlaf">Schlaf (Stunden)</label>
                     <input type="number" class="form-control" id="schlaf" ng-model="$ctrl.schlaf">
+                </div>
+                <div class="form-group">
+                    <label for="wettkampf">Wettkampf (z.B: EYC, MYCC, Trial, Bärecup, ...)</label>
+                    <input type="text" class="form-control" id="wettkampf" ng-model="$ctrl.wettkampf">
                 </div>
                 <div class="form-group">
                     <label for="sonstiges">Sonstiges</label>

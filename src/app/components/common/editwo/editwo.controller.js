@@ -169,6 +169,7 @@ class EditWoController {
         this.$log.debug('zuege23: ' + this.woData.zuege23);
         this.$log.debug('zuege34: ' + this.woData.zuege34);
         this.$log.debug('gefuehl: ' + this.woData.gefuehl);
+        this.$log.debug('wettkampf: ' + this.woData.wettkampf);
         this.$log.debug('sonstiges: ' + this.woData.sonstiges);
 
         // add workout
@@ -191,6 +192,7 @@ class EditWoController {
             "zuege34": this.woData.zuege34,
             "trainingszeit": this.woData.trainingszeit,
             "gefuehl": this.woData.gefuehl,
+            "wettkampf": this.woData.wettkampf,
             "sonstiges": this.woData.sonstiges
         };
         this.workoutsService.editWorkout(dataObj);
