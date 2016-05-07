@@ -5,29 +5,21 @@
  * @version: 0.0.1
  * @since 28.01.2016
  */
-import infoDialogTemplate from "../info/info.html"
-import infoDialogController from "../info/info.controller"
 import infoDialogImage from "../info/images/belastung.png"
 
 class NewWoController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, config, $log, $state, $uibModal) {
+    constructor(workoutsService, oAuthService, config, $log, $state) {
         this.workoutsService = workoutsService;
         this.$log = $log;
         this.$state = $state;
-        this.$uibModal = $uibModal;
 
         this.oAuthService = oAuthService;
         this.config = config;
 
-        this.title = 'Logbook for Climbing Workouts';
-        this.welcomeMessage = 'Herzlich Willkommen';
-
+        this.title = 'Neue Trainingseinheit erfassen...';
         this.showInfoImage = false;
-
         this.workoutLocations = this.config.workoutLocations;
-
-        this.workoutForm = {};
 
         this.username = null;
         let authData = this.oAuthService.getAuthData();
@@ -60,48 +52,48 @@ class NewWoController {
          * Start adding Angular UI Datepicker functions...
          */
         this.today = function() {
-        this.datum = new Date();
+            this.datum = new Date();
         };
         this.today();
 
         this.clear = function() {
-        this.datum = null;
+            this.datum = null;
         };
 
         this.inlineOptions = {
-        customClass: getDayClass,
-        minDate: new Date(),
-        showWeeks: true
+            customClass: getDayClass,
+            minDate: new Date(),
+            showWeeks: true
         };
 
         this.dateOptions = {
-        dateDisabled: disabled,
-        formatYear: 'yy',
-        maxDate: new Date(),
-        minDate: new Date(2014, 12, 31),
-        startingDay: 1
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            maxDate: new Date(),
+            minDate: new Date(2014, 12, 31),
+            startingDay: 1
         };
 
         function disabled(data) {
-          var date = data.date,
+            var date = data.date,
             mode = data.mode;
-          return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
         }
 
 
         this.toggleMin = function() {
-        this.inlineOptions.minDate = this.inlineOptions.minDate ? null : new Date();
-        this.dateOptions.minDate = this.inlineOptions.minDate;
+            this.inlineOptions.minDate = this.inlineOptions.minDate ? null : new Date();
+            this.dateOptions.minDate = this.inlineOptions.minDate;
         };
 
         this.toggleMin();
 
         this.open1 = function() {
-        this.popup1.opened = true;
+            this.popup1.opened = true;
         };
 
         this.setDate = function(year, month, day) {
-        this.datum = new Date(year, month, day);
+            this.datum = new Date(year, month, day);
         };
 
         this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -109,7 +101,7 @@ class NewWoController {
         this.altInputFormats = ['M!/d!/yyyy'];
 
         this.popup1 = {
-        opened: false
+            opened: false
         };
 
         var tomorrow = new Date();
@@ -118,32 +110,32 @@ class NewWoController {
         afterTomorrow.setDate(tomorrow.getDate() + 1);
 
         this.events = [
-        {
-          date: tomorrow,
-          status: 'full'
-        },
-        {
-          date: afterTomorrow,
-          status: 'partially'
-        }
+            {
+                date: tomorrow,
+                status: 'full'
+            },
+            {
+                date: afterTomorrow,
+                status: 'partially'
+            }
         ];
 
         function getDayClass(data) {
-        var date = data.date,
-          mode = data.mode;
-        if (mode === 'day') {
-          var dayToCheck = new Date(date).setHours(0,0,0,0);
+            var date = data.date,
+                mode = data.mode;
+            if (mode === 'day') {
+                var dayToCheck = new Date(date).setHours(0,0,0,0);
 
-          for (var i = 0; i < this.events.length; i++) {
-            var currentDay = new Date(this.events[i].date).setHours(0,0,0,0);
+                for (var i = 0; i < this.events.length; i++) {
+                    var currentDay = new Date(this.events[i].date).setHours(0,0,0,0);
 
-            if (dayToCheck === currentDay) {
-              return this.events[i].status;
+                    if (dayToCheck === currentDay) {
+                      return this.events[i].status;
+                    }
+                }
             }
-          }
-        }
 
-        return '';
+            return '';
         }
 
         /*
@@ -226,24 +218,6 @@ class NewWoController {
         // navigate home...
         this.$state.go('home');
     }
-
-/*
-    showInfo() {
-         let log = this.$log;
-         let modalInstance = this.$uibModal.open({
-             animation: true,
-             template: '<info></info>'
-             //template: infoDialogTemplate,
-             //controller: infoDialogController
-         });
-
-         modalInstance.result.then(function () {
-             log.debug('confirmed');
-         }, function () {
-             log.debug('dismissed');
-         });
-    }
-*/
 
     showInfo() {
         this.showInfoImage = !this.showInfoImage;

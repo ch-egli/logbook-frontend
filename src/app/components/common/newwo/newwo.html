@@ -16,7 +16,7 @@
         <div class="jumbotron">
             <div>
                 <h1>
-                    <small>Neue Trainingseinheit erfassen...</small>
+                    <small>{{ $ctrl.title }}</small>
                 </h1>
             </div>
         </div>
@@ -32,15 +32,15 @@
                 <div class="form-group">
                     <label for="datum">Datum</label>
                     <p class="input-group">
-                    <input type="text"
-                        class="form-control"
-                        uib-datepicker-popup="dd.MM.yyyy"
-                        id="datum"
-                        ng-model="$ctrl.datum"
-                        is-open="$ctrl.popup1.opened"
-                        datepicker-options="dateOptions"
-                        ng-required="true"
-                        close-text="Schliessen"/>
+                        <input type="text"
+                               class="form-control"
+                               uib-datepicker-popup="dd.MM.yyyy"
+                               id="datum"
+                               ng-model="$ctrl.woData.datum"
+                               is-open="$ctrl.popup1.opened"
+                               datepicker-options="dateOptions"
+                               ng-required="true"
+                               close-text="Schliessen"/>
                     <span class="input-group-btn">
                         <button type="button"
                                 class="btn btn-default"
