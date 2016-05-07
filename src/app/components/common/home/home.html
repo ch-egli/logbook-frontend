@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="w in $ctrl.workouts" ng-show="!$ctrl.filter">
-                        <td>{{ w.datum | date:'dd.MM.yy' }}</td>
+                        <td ng-click="$ctrl.showData(m)" title="zeige Daten">{{ w.datum | date:'dd.MM.yy' }}</td>
                         <td>{{ w.benutzername }}</td>
                         <td>{{ w.ort }}</td>
                         <td style="white-space:nowrap;">

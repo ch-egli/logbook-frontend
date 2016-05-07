@@ -45,6 +45,29 @@ class HomeController {
          });
     }
 
+/*
+    showData(workout) {
+         let log = this.$log;
+         let woService = this.workoutsService;
+         let modalInstance = this.$uibModal.open({
+             animation: true,
+             template: '<info></info>',
+             resolve: {
+                 wo: function () {
+                   return workout;
+                 }
+             }
+
+         });
+
+         modalInstance.result.then(function () {
+             log.debug('Workout dialog has been closed');
+         }, function () {
+             log.warn('Error in ShowData dialog');
+         });
+    }
+*/
+
     isMyWorkout(workout) {
         return this.username === workout.benutzername;
     }

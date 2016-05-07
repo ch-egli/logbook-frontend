@@ -5,18 +5,12 @@
  * @version: 0.0.1
  * @since 28.04.2016
  */
-import infoImage from "./images/belastung.png"
-
 class InfoController {
     /*@ngInject*/
-    constructor($log) {
+    constructor($log, $uibModalInstance, wo) {
         this.$log = $log;
-        //this.$uibModalInstance = $uibModalInstance;
-    }
-
-    getInfoImage() {
-        this.$log.debug('got info image...');
-        return infoImage;
+        this.wo = wo;
+        this.$uibModalInstance = $uibModalInstance;
     }
 
     closeModal() {

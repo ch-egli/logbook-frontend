@@ -5,7 +5,7 @@
  * @version: 0.0.1
  * @since 28.01.2016
  */
-import infoDialogImage from "../info/images/belastung.png"
+import infoDialogImage from "./images/belastung.png"
 
 class EditWoController {
     /*@ngInject*/
