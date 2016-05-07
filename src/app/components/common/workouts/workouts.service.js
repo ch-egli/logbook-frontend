@@ -50,7 +50,7 @@ class WorkoutsService {
         let woData = {};
         if (id) {
             this._setAuthorizationHeader();
-            let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/' + service.authData.name + '/workouts/' + id);
+            let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/all/workouts/' + id);
             res.success(function(data, status, headers, config) {
                 console.log('got data: ' + status);
                 if (data) {

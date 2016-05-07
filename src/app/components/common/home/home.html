@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="w in $ctrl.workouts" ng-show="!$ctrl.filter">
-                        <td ng-click="$ctrl.showData(m)" title="zeige Daten">{{ w.datum | date:'dd.MM.yy' }}</td>
+                        <td><a ui-sref="viewwo({id: w.id})" title="Daten anzeigen">{{ w.datum | date:'dd.MM.yy' }}</a></td>
                         <td>{{ w.benutzername }}</td>
                         <td>{{ w.ort }}</td>
                         <td style="white-space:nowrap;">
@@ -33,7 +33,7 @@
                         </td>
                     </tr>
                     <tr ng-repeat="m in $ctrl.myWorkouts" ng-show="$ctrl.filter">
-                        <td>{{ m.datum | date:'dd.MM.yy' }}</td>
+                        <td><a ui-sref="viewwo({id: m.id})" title="Daten anzeigen">{{ m.datum | date:'dd.MM.yy' }}</a></td>
                         <td>{{ m.benutzername }}</td>
                         <td>{{ m.ort }}</td>
                         <td style="white-space:nowrap;">

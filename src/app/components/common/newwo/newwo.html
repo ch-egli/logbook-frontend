@@ -36,7 +36,7 @@
                                class="form-control"
                                uib-datepicker-popup="dd.MM.yyyy"
                                id="datum"
-                               ng-model="$ctrl.woData.datum"
+                               ng-model="$ctrl.datum"
                                is-open="$ctrl.popup1.opened"
                                datepicker-options="dateOptions"
                                ng-required="true"
@@ -68,11 +68,11 @@
                 </div>
                 <div class="form-group">
                     <label for="trainingszeit">Dauer (Minuten)</label>
-                    <input type="number" class="form-control" id="trainingszeit" ng-model="$ctrl.woData.trainingszeit">
+                    <input type="number" class="form-control" id="trainingszeit" ng-model="$ctrl.trainingszeit">
                 </div>
                 <div class="form-group">
                     <label for="belastung">Belastung (6-20)</label>&nbsp;&nbsp;<a ng-click="$ctrl.showInfo()" title="Info"><span class="glyphicon glyphicon-info-sign"></span></a>
-                    <select class="form-control" id="belastung" ng-model="$ctrl.woData.belastung">
+                    <select class="form-control" id="belastung" ng-model="$ctrl.belastung">
                         <option>20</option>
                         <option>19</option>
                         <option>18</option>
