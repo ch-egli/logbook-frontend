@@ -12,13 +12,14 @@ import NewWo from './newwo/newwo';
 import EditWo from './editwo/editwo';
 import ViewWo from './viewwo/viewwo';
 import Info from './info/info';
+import Export from './export/export';
 import Navbar from './navbar/navbar';
 import Workouts from './workouts/workouts';
 import Messages from './messages/messages';
 import Theme from './theme/theme';
 
 let commonModule = angular.module('app.components.common', [
-    Home.name, NewWo.name, EditWo.name, ViewWo.name, Info.name, Navbar.name, Workouts.name, Messages.name, Theme.name
+    Home.name, NewWo.name, EditWo.name, ViewWo.name, Info.name, Export.name, Navbar.name, Workouts.name, Messages.name, Theme.name
 ]);
 
 export default commonModule;

@@ -15,7 +15,9 @@ class NavbarController {
     }
 
     exportToExcel() {
-        this.workoutsService.exportWorkoutsToExcel();
+        let today = new Date();
+        let year = today.getFullYear();
+        this.workoutsService.exportWorkoutsToExcel(year);
     }
 }
 

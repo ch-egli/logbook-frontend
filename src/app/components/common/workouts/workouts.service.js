@@ -128,13 +128,14 @@ class WorkoutsService {
         });
     }
 
-    exportWorkoutsToExcel() {
+    exportWorkoutsToExcel(year, user) {
         let service = this;
         this._setAuthorizationHeader();
 
-        // TODO get current year...
-        let year = 2016;
-        let downloadUrl = service.config.resourceServerUrl + 'v1/user/' + service.authData.name + '/excelresults/' + year;
+        if (!user) {
+            user = service.authData.name;
+        }
+        let downloadUrl = service.config.resourceServerUrl + 'v1/user/' + user + '/excelresults/' + year;
 
         // with jQuery: $("body").append("<iframe src='" + downloadUrl + "' style='display: none;' ></iframe>");
         let iframe = document.createElement("iframe");

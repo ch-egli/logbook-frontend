@@ -94,6 +94,15 @@ class OAuthService {
         return !!this.getAuthData().authenticated;
     }
 
+    isAdmin() {
+        if (this.isLoggedIn()) {
+            let roles = this.getAuthData().roles;
+            return roles.indexOf('admin') > -1;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Gibt den Benutzername eines Users zurueck falls eingelogt. Sonst ''.
      * @returns {*} Benutzername oder ''.
