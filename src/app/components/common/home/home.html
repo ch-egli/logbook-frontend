@@ -17,6 +17,11 @@
                         <th>Datum</th>
                         <th>Benutzer</th>
                         <th>Ort</th>
+                        <th class="hidden-xs">Dauer</th>
+                        <th class="hidden-xs">Belastung</th>
+                        <th class="hidden-xs">Züge12</th>
+                        <th class="hidden-xs">Züge23</th>
+                        <th class="hidden-xs">Züge34</th>
                         <th style="white-space:nowrap;"></th>
                     </tr>
                 </thead>
@@ -25,6 +30,11 @@
                         <td><a ui-sref="viewwo({id: w.id})" title="Daten anzeigen">{{ w.datum | date:'dd.MM.yy' }}</a></td>
                         <td>{{ w.benutzername }}</td>
                         <td>{{ w.ort }}</td>
+                        <td class="hidden-xs">{{ w.trainingszeit }}</td>
+                        <td class="hidden-xs">{{ w.belastung }}</td>
+                        <td class="hidden-xs">{{ w.zuege12 }}</td>
+                        <td class="hidden-xs">{{ w.zuege23 }}</td>
+                        <td class="hidden-xs">{{ w.zuege34 }}</td>
                         <td style="white-space:nowrap;">
                             <span ng-show="$ctrl.isMyWorkout(w)">
                                 <a ui-sref="editwo({id: w.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
@@ -36,6 +46,11 @@
                         <td><a ui-sref="viewwo({id: m.id})" title="Daten anzeigen">{{ m.datum | date:'dd.MM.yy' }}</a></td>
                         <td>{{ m.benutzername }}</td>
                         <td>{{ m.ort }}</td>
+                        <td class="hidden-xs">{{ w.trainingszeit }}</td>
+                        <td class="hidden-xs">{{ w.belastung }}</td>
+                        <td class="hidden-xs">{{ w.zuege12 }}</td>
+                        <td class="hidden-xs">{{ w.zuege23 }}</td>
+                        <td class="hidden-xs">{{ w.zuege34 }}</td>
                         <td style="white-space:nowrap;">
                             <span>
                                 <a ui-sref="editwo({id: m.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
