@@ -144,6 +144,7 @@ class OAuthService {
             })
                 .success(userResponse => {
                     if (userResponse) {
+                        service.$log.debug("_handleLoginResponse - userResponse.vorname: " + userResponse.vorname);
                         this.user.authenticated = true;
                         this.user.roles = userResponse.rollen;
                         this.user.firstname = userResponse.vorname;
@@ -156,6 +157,7 @@ class OAuthService {
                         service.$http.defaults.headers.common['Authorization'] = this.user.authheader;
 
                         service._setAuthData(this.user);
+                        service.$log.debug("_handleLoginResponse - before setting location");
                         service.$location.path('/home');
                     }
                 })
