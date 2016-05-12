@@ -14,6 +14,7 @@ import ngCookies from 'angular-cookies';
 import ngTranslate from 'angular-translate';
 import ngTranslateStaticFilesLoader from 'angular-translate-loader-static-files';
 import uiBootstrap from 'angular-ui-bootstrap';
+import ngTouch from 'angular-touch';
 
 // SBB Imports
 import 'esta-webjs-style/build/css/style.css';
@@ -28,7 +29,7 @@ import langEn from './languages/lang-en.json';
 
 angular.module('app', [
     uiRouter, ngTranslate, ngTranslateStaticFilesLoader, ngCookies, ngResource,
-    uiBootstrap, Components.name
+    uiBootstrap, ngTouch, Components.name
 ])
     .config(/*@ngInject*/($translateProvider, $httpProvider) => {
 
@@ -45,13 +46,14 @@ angular.module('app', [
     // Globale Konfigurationeinstellungen
     .constant('config', {
 
+/*
         resourceServerUrl: 'http://52.59.250.63:8181/',
         authServerUrl: 'http://52.59.250.63:8181/',
+*/
 
-/*
         resourceServerUrl: 'http://192.168.1.120:8181/',
         authServerUrl: 'http://192.168.1.120:8181/',
-*/
+
 
         authClientId: 'logbookAngularClient',
         authClientSecret: 'myAbcdghij9876Secret',
