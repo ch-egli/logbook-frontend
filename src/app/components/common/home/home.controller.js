@@ -9,7 +9,7 @@ import modalConfirmDeletion from "./confirmDeletion.html"
 
 class HomeController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, $log, $uibModal) {
+    constructor(workoutsService, oAuthService, $log, $uibModal, NgTableParams) {
         this.workoutsService = workoutsService;
         this.oAuthService = oAuthService;
         this.$uibModal = $uibModal;
@@ -22,11 +22,46 @@ class HomeController {
 
         this.workoutForm = {};
 
-        this.filter = false;
-
         this.workouts = this.workoutsService.getAllWorkouts();
         this.myWorkouts = this.workoutsService.getWorkoutsByUser(this.username);
 
+          this.data = [
+            {id: 1, benutzername: 'liv', ort: 'k44'},
+            {id: 2, benutzername: 'zoe', ort: 'matten'},
+            {id: 3, benutzername: 'liv', ort: 'griffbar'},
+            {id: 4, benutzername: 'zoe', ort: 'k44'},
+            {id: 5, benutzername: 'liv', ort: 'matten'},
+            {id: 6, benutzername: 'zoe', ort: 'griffbar'},
+            {id: 7, benutzername: 'liv', ort: 'k44'},
+            {id: 8, benutzername: 'zoe', ort: 'matten'},
+            {id: 9, benutzername: 'liv', ort: 'griffbar'},
+          ];
+
+/*
+        this.tableParams = new NgTableParams(
+            { page: 1, count: 5 },
+            {
+                counts: [5, 10, 25],
+                //total: 9,
+                dataset: this.data
+            });
+*/
+        let wos = this.workouts;
+        this.tableParams = new NgTableParams(
+            { page: 1, count: 5 },
+            {
+                counts: [5, 10, 25],
+                getData: function(params) {
+                    // ajax request to api
+                    return wos.$promise.then(function(data) {
+                        params.total(data.inlineCount); // recal. page nav controls
+                        return data.results;
+                    });
+                }
+            });
+
+
+        this.filter = false;
     }
 
     askAndDelete(workout) {

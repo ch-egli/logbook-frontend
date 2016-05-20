@@ -11,6 +11,31 @@
 
         <div class="container">
             <h2>Letzte Trainingseinheiten</h2>
+
+            <div id="grid1" ui-grid="{ data: $ctrl.workouts }" class="grid"></div>
+            <p>__</p>
+
+
+            <table ng-table="$ctrl.tableParams" show-filter="true" class="table table-striped">
+                <tr ng-repeat="w in $data">
+                    <td><a ui-sref="viewwo({id: w.id})" title="Daten anzeigen">{{ w.datum | date:'dd.MM.yy' }}</a></td>
+                    <td>{{ w.benutzername }}</td>
+                    <td>{{ w.ort }}</td>
+                    <td class="hidden-xs">{{ w.trainingszeit }}</td>
+                    <td class="hidden-xs">{{ w.belastung }}</td>
+                    <td class="hidden-xs">{{ w.zuege12 }}</td>
+                    <td class="hidden-xs">{{ w.zuege23 }}</td>
+                    <td class="hidden-xs">{{ w.zuege34 }}</td>
+                    <td style="white-space:nowrap;">
+                            <span ng-show="$ctrl.isMyWorkout(w)">
+                                <a ui-sref="editwo({id: w.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
+                                <a ng-click="$ctrl.askAndDelete(w)" title="Loeschen"><span class="glyphicon glyphicon-remove"></span></a>
+                            </span>
+                    </td>
+                </tr>
+            </table>
+
+<!--
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -63,6 +88,7 @@
             <div class="checkbox">
                 <label style="padding-right:10px;"><input id="filter" type="checkbox" ng-model="$ctrl.filter"> nur eigene Trainingseinheiten anzeigen</label>
             </div>
+-->
         </div>
 
     </div>

@@ -9,12 +9,18 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import uiBootstrap from 'angular-ui-bootstrap';
 
+import uiGrid from 'angular-ui-grid/ui-grid.js';
+import 'angular-ui-grid/ui-grid.css';
+
+import {name as ngTable} from 'ng-table/dist/ng-table.js';
+import 'ng-table/dist/ng-table.css';
+
 import template from './home.html';
 import controller from './home.controller';
 
 
 let homeModule = angular.module('home', [
-    uiRouter, uiBootstrap
+    uiRouter, uiBootstrap, 'ui.grid', ngTable
 ])
     .config(/*@ngInject*/($stateProvider, $urlRouterProvider) => {
         $urlRouterProvider.otherwise('/');
