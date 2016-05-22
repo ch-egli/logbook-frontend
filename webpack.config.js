@@ -27,7 +27,7 @@ var commonConfig = exports.commonConfig = {
             'angular-ui-bootstrap',
             'angular-bootstrap-npm',
             'angular-cookies',
-            'angular-ui-grid',
+            'ng-table',
             'bootstrap/dist/css/bootstrap.css',
             'jquery'
         ]
