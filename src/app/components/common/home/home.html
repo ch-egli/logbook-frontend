@@ -18,48 +18,6 @@
         <div class="container">
             <h2>Letzte Trainingseinheiten</h2>
 
-<!--
-            <div id="grid1" ui-grid="{ data: $ctrl.workouts }" class="grid"></div>
-            <p>__</p>
--->
-
-
-<!--
-            <table ng-table="$ctrl.tableParams" show-filter="true" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Datum</th>
-                    <th>Benutzer</th>
-                    <th>Ort</th>
-                    <th class="hidden-xs">Dauer</th>
-                    <th class="hidden-xs">Belastung</th>
-                    <th class="hidden-xs">Züge12</th>
-                    <th class="hidden-xs">Züge23</th>
-                    <th class="hidden-xs">Züge34</th>
-                    <th style="white-space:nowrap;"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="w in $data track by w.id">
-                    <td><a ui-sref="viewwo({id: w.id})" title="Daten anzeigen">{{ w.datum | date:'dd.MM.yy' }}</a></td>
-                    <td>{{ w.benutzername }}</td>
-                    <td>{{ w.ort }}</td>
-                    <td class="hidden-xs">{{ w.trainingszeit }}</td>
-                    <td class="hidden-xs">{{ w.belastung }}</td>
-                    <td class="hidden-xs">{{ w.zuege12 }}</td>
-                    <td class="hidden-xs">{{ w.zuege23 }}</td>
-                    <td class="hidden-xs">{{ w.zuege34 }}</td>
-                    <td style="white-space:nowrap;">
-                            <span ng-show="$ctrl.isMyWorkout(w)">
-                                <a ui-sref="editwo({id: w.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
-                                <a ng-click="$ctrl.askAndDelete(w)" title="Loeschen"><span class="glyphicon glyphicon-remove"></span></a>
-                            </span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
--->
-
             <table ng-table="$ctrl.tableParams" show-filter="true" class="table table-striped">
                 <thead>
                     <tr>
