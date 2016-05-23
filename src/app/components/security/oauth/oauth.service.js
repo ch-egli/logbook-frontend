@@ -103,6 +103,15 @@ class OAuthService {
         }
     }
 
+    isTrainer() {
+        if (this.isLoggedIn()) {
+            let roles = this.getAuthData().roles;
+            return roles.indexOf('trainer') > -1;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Gibt den Benutzername eines Users zurueck falls eingelogt. Sonst ''.
      * @returns {*} Benutzername oder ''.

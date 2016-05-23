@@ -16,8 +16,8 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a ui-sref="home">Home</a></li>
                 <li><a ui-sref="newwo"><span class="glyphicon glyphicon-plus"></span> Neu...</a></li>
-                <li ng-show="!$ctrl.oAuthService.isAdmin()"><a ng-click="$ctrl.exportToExcel()"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
-                <li ng-show="$ctrl.oAuthService.isAdmin()"><a ui-sref="export"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
+                <li ng-show="!$ctrl.oAuthService.isTrainer()"><a ng-click="$ctrl.exportToExcel()"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
+                <li ng-show="$ctrl.oAuthService.isTrainer()"><a ui-sref="export"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
 <!--
                 <li><a ui-sref="info">Info</a></li>
 -->
