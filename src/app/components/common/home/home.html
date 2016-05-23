@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="w in $data track by w.id" ng-show="!$ctrl.filter">
+                    <tr ng-repeat="w in $data track by w.id">
                         <td><a ui-sref="viewwo({id: w.id})" title="Daten anzeigen">{{ w.datum | date:'dd.MM.yy' }}</a></td>
                         <td>{{ w.benutzername }}</td>
                         <td>{{ w.ort }}</td>
@@ -55,6 +55,11 @@
                     </tr>
                 </tbody>
             </table>
+
+            <div class="checkbox" ng-show="$ctrl.hasEgliSistersRole()">
+                <label style="padding-right:10px;">
+                    <input id="filter" type="checkbox" ng-model="$ctrl.filter" ng-change="$ctrl.onFilterChanged($ctrl.filter)"> nur eigene Trainingseinheiten anzeigen</label>
+            </div>
 
         </div>
     </div>
