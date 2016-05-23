@@ -18,27 +18,26 @@ class HomeController {
         this.title = 'RZ-BeO Trainings-Logbook';
         this.welcomeMessage = 'Herzlich Willkommen, ' + this.oAuthService.getFirstname();
 
-        this.username = this.oAuthService.getUsername();
-
         this.workoutForm = {};
 
-        this.workouts = this.workoutsService.getAllWorkouts();
-        this.myWorkouts = this.workoutsService.getWorkoutsByUser(this.username);
+        this.username = this.oAuthService.getUsername();
 
-        let wos = this.workouts;
+        let woService = this.workoutsService;
         this.tableParams = new NgTableParams(
-            { page: 1, count: 5 },
+            { page: 1, count: 8 },
             {
-                counts: [5, 10, 25],
+                counts: [8, 16],
                 total: 0,
+                paginationMaxBlocks: 7,
                 getData: function(params) {
-                    return wos.$promise.then(function(data) {
-                        params.total(8);
-                        return data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    return woService.getAllWorkouts(params.page() - 1, params.count()).$promise.then(function(data) {
+                        params.total(data.totalElements);
+                        return data.content;
                     });
 
                 }
-            });
+            }
+        );
 
         this.filter = false;
     }

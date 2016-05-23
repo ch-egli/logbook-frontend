@@ -20,15 +20,31 @@ class WorkoutsService {
     }
 
     /**
-     * Liefert alle Workouts der REST-Resource zurueck
-     * @returns {angular.resource.IResourceArray<T>}
+     * Get all workouts depending of user role.
      */
-    getAllWorkouts() {
+    getAllWorkouts(mPage, mSize) {
         let service = this;
-        this._getAuthData();
-        let workouts = this.$resource(service.config.resourceServerUrl + 'v1/public/lastworkouts');
-        return workouts.query();
+        this._setAuthorizationHeader();
+
+        let userRoles = this.authData.roles;
+        let woDiscriminator = null;
+        if (userRoles.indexOf('trainer') > -1) {
+            woDiscriminator = 'all';
+        } else if (userRoles.indexOf('egliSisters') > -1) {
+            woDiscriminator = 'groupEgliSisters';
+        } else {
+            woDiscriminator = this.authData.name;
+        }
+
+        let workoutsApi = this.$resource(service.config.resourceServerUrl + 'v1/users/' + woDiscriminator + '/workouts');
+        let queryParams = {
+            page:mPage,
+            size:mSize
+        };
+        let workouts = workoutsApi.get(queryParams);
+        return workouts;
     }
+
 
     getWorkoutsByUser(username) {
         let service = this;
