@@ -16,14 +16,19 @@ class LoginController {
         this.title = 'Logbook for Climbing Workouts';
         this.welcomeMessage = 'Herzlich Willkommen';
 
+        this.rememberMe;
+
         // restore login values if user have previously logged in
         let storedBenutzername = this.$window.localStorage['bn'];
-        if (storedBenutzername) {
+        let storedRememberMe = this.$window.localStorage['rememberMe'];
+        if (storedRememberMe && storedBenutzername) {
+            this.rememberMe = true
             this.benutzername = storedBenutzername;
             this.passwort = this.$window.localStorage['ps'];
         } else {
             this.benutzername = "";
             this.passwort = "";
+            this.rememberMe = false;
         }
     }
 
@@ -31,8 +36,15 @@ class LoginController {
         this.$log.debug('### submitted, benutzername: ' + this.benutzername);
 
         // save login in localStorage for next access
-        this.$window.localStorage['bn'] = this.benutzername;
-        this.$window.localStorage['ps'] = this.passwort;
+        if (this.rememberMe === true) {
+            this.$window.localStorage['rememberMe'] = true;
+            this.$window.localStorage['bn'] = this.benutzername;
+            this.$window.localStorage['ps'] = this.passwort;
+        } else {
+            this.$window.localStorage['rememberMe'] = false;
+            this.$window.localStorage['bn'] = '';
+            this.$window.localStorage['ps'] = '';
+        }
 
         this.oAuthService.login(this.benutzername, this.passwort);
 
