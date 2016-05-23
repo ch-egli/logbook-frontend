@@ -68,7 +68,7 @@ class WorkoutsService {
             this._setAuthorizationHeader();
             let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/all/workouts/' + id);
             res.success(function(data, status, headers, config) {
-                console.log('got data: ' + status);
+                //console.log('got data: ' + status);
                 if (data) {
                     woData.datum = data.datum;
                     if (service.config.workoutLocations.indexOf(data.ort) > -1) {
@@ -110,7 +110,7 @@ class WorkoutsService {
         this._setAuthorizationHeader();
         let res = this.$http.post(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts', workout);
         res.success(function(data, status, headers, config) {
-            console.log('added workout with id: ' + data.id);
+            //console.log('added workout with id: ' + data.id);
             service.$state.reload();
         });
         res.error(function(data, status, headers, config) {
@@ -123,7 +123,7 @@ class WorkoutsService {
         this._setAuthorizationHeader();
         let res = this.$http.put(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts/' + workout.id, workout);
         res.success(function(data, status, headers, config) {
-            console.log('updated workout with id: ' + data.id);
+            //console.log('updated workout with id: ' + data.id);
             service.$state.reload();
         });
         res.error(function(data, status, headers, config) {
@@ -136,7 +136,7 @@ class WorkoutsService {
         this._setAuthorizationHeader();
         let res = this.$http.delete(service.config.resourceServerUrl + 'v1/users/' + workout.benutzername + '/workouts/' + workout.id);
         res.success(function(data, status, headers, config) {
-            console.log('deleted workout with id: ' + data.id);
+            //console.log('deleted workout with id: ' + data.id);
             service.$state.reload();
         });
         res.error(function(data, status, headers, config) {

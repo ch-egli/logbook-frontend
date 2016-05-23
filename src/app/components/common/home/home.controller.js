@@ -26,8 +26,8 @@ class HomeController {
         this.tableParams = new NgTableParams(
             { page: 1, count: 8 },
             {
-                counts: [8, 16],
-                total: 0,
+                counts: [8, 16, 32],
+                //total: 0,
                 paginationMaxBlocks: 7,
                 getData: function(params) {
                     return woService.getAllWorkouts(params.page() - 1, params.count()).$promise.then(function(data) {

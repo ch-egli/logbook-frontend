@@ -19,7 +19,7 @@ class OAuthInterceptorService {
     }
 
     responseError(res) {
-        console.log('handling response', res, service);
+        //console.log('handling response', res, service);
 
         if (res.status === 401) {
             service.$cookies.remove('auth');
