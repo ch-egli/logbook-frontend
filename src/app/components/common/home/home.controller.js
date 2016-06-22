@@ -36,11 +36,6 @@ class HomeController {
         }
 */
 
-        this.tabs = [
-            { title:'Dynamic Title 1', content:'Dynamic content 1' },
-            { title:'Dynamic Title 2', content:'Dynamic content 2' }
-          ];
-
         this.filter = false;
         let storageFilterVal = this.$window.localStorage['doFilter.' + this.username];
         this.$log.debug('storageFilterVal: ' + storageFilterVal);

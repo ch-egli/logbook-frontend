@@ -25,7 +25,6 @@ var commonConfig = exports.commonConfig = {
             'angular-animate',
             'angular-touch',
             'angular-ui-bootstrap',
-            'angular-bootstrap-npm',
             'angular-cookies',
             'ng-table',
             'bootstrap/dist/css/bootstrap.css',

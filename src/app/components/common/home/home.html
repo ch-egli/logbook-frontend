@@ -33,8 +33,6 @@
         <p>
             <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.active = 0">Select first tab</button>
             <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.active = 1">Select second tab</button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.active = 2">Select third tab</button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.active = 3">Select forth tab</button>
         </p>
         <uib-tabset active="$ctrl.active">
             <uib-tab index="0">
@@ -115,10 +113,6 @@
                     </table>
                 </div>
 
-            </uib-tab>
-
-            <uib-tab index="$index + 2" ng-repeat="tab in $ctrl.tabs" heading="{{tab.title}}">
-                {{tab.content}}
             </uib-tab>
 
         </uib-tabset>
