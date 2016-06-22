@@ -1,16 +1,14 @@
 /**
- * Definition des EditWo-Controllers
+ * Definition des EditStatus-Controllers
  *
  * @author Christian Egli
  * @version: 0.0.1
- * @since 28.01.2016
+ * @since 20.06.2016
  */
-import infoDialogImage from "./images/belastung.png"
-
-class EditWoController {
+class EditStatusController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, config, $window, $log, $state, $stateParams) {
-        this.workoutsService = workoutsService;
+    constructor(statusService, oAuthService, config, $window, $log, $state, $stateParams) {
+        this.statusService = statusService;
         this.$log = $log;
         this.$state = $state;
         this.$window = $window;
@@ -18,11 +16,9 @@ class EditWoController {
         this.oAuthService = oAuthService;
         this.config = config;
 
-        this.title = 'Trainingseinheit bearbeiten...';
-        this.showInfoImage = false;
-        this.workoutLocations = this.config.workoutLocations;
+        this.title = 'Status bearbeiten...';
         this.id = $stateParams.id;
-        this.$log.debug('workout-id: ' + this.id);
+        this.$log.debug('status-id: ' + this.id);
 
         this.username = null;
         let authData = this.oAuthService.getAuthData();
@@ -31,9 +27,9 @@ class EditWoController {
         }
         this.$log.debug('username (in constructor): ' + this.username);
 
-        this.woData = workoutsService.getWorkoutById(this.id);
-        this.woData.id = this.id;
-        this.woData.username = this.username;
+        this.statusData = statusService.getStatusById(this.id);
+        this.statusData.id = this.id;
+        this.statusData.username = this.username;
 
 
         /*
@@ -132,59 +128,31 @@ class EditWoController {
 
     }
 
-    submitWorkout() {
-        this.$log.debug('id: ' + this.woData.id);
-        this.$log.debug('benutzername: ' + this.woData.username);
-        this.$log.debug('datum: ' + this.woData.datum);
-        this.$log.debug('ort1: ' + this.woData.ort1);
-        this.$log.debug('ort2: ' + this.woData.ort2);
-        this.$log.debug('schlaf: ' + this.woData.schlaf);
-        this.$log.debug('lead: ' + this.woData.lead);
-        this.$log.debug('bouldern: ' + this.woData.bouldern);
-        this.$log.debug('kraftraum: ' + this.woData.kraftraum);
-        this.$log.debug('dehnen: ' + this.woData.dehnen);
-        this.$log.debug('campus: ' + this.woData.campus);
-        this.$log.debug('mentaltraining: ' + this.woData.mentaltraining);
-        this.$log.debug('geraete: ' + this.woData.geraete);
-        this.$log.debug('belastung: ' + this.woData.belastung);
-        this.$log.debug('zuege12: ' + this.woData.zuege12);
-        this.$log.debug('zuege23: ' + this.woData.zuege23);
-        this.$log.debug('zuege34: ' + this.woData.zuege34);
-        this.$log.debug('gefuehl: ' + this.woData.gefuehl);
-        this.$log.debug('wettkampf: ' + this.woData.wettkampf);
-        this.$log.debug('sonstiges: ' + this.woData.sonstiges);
+    submitStatus() {
+        this.$log.debug('id: ' + this.statusData.id);
+        this.$log.debug('benutzername: ' + this.statusData.username);
+        this.$log.debug('datum: ' + this.statusData.datum);
+        this.$log.debug('schlaf: ' + this.statusData.schlaf);
+        this.$log.debug('gefuehl: ' + this.statusData.gefuehl);
+        this.$log.debug('bemerkung: ' + this.statusData.bemerkung);
 
-        // add workout
+        // add status
         let dataObj = {
-            "id": this.woData.id,
-            "benutzername": this.woData.username,
-            "datum": this.woData.datum,
-            "ort": this.woData.ort2 != null ? this.woData.ort2 : this.woData.ort1,
-            "schlaf": this.woData.schlaf,
-            "lead": this.woData.lead === true ? 1 : null,
-            "bouldern": this.woData.bouldern === true ? 1 : null,
-            "kraftraum": this.woData.kraftraum === true ? 1 : null,
-            "dehnen": this.woData.dehnen === true ? 1 : null,
-            "campus": this.woData.campus === true ? 1 : null,
-            "mentaltraining": this.woData.mentaltraining === true ? 1 : null,
-            "geraete": this.woData.geraete === true ? 1 : null,
-            "belastung": this.woData.belastung,
-            "zuege12": this.woData.zuege12,
-            "zuege23": this.woData.zuege23,
-            "zuege34": this.woData.zuege34,
-            "trainingszeit": this.woData.trainingszeit,
-            "gefuehl": this.woData.gefuehl,
-            "wettkampf": this.woData.wettkampf,
-            "sonstiges": this.woData.sonstiges
+            "id": this.statusData.id,
+            "benutzername": this.statusData.username,
+            "datum": this.statusData.datum,
+            "schlaf": this.statusData.schlaf,
+            "gefuehl": this.statusData.gefuehl,
+            "bemerkung": this.statusData.bemerkung
         };
-        this.workoutsService.editWorkout(dataObj);
+        this.statusService.editStatus(dataObj);
 
         // navigate home...
         this.$window.localStorage['activeTab'] = 0;
         this.$state.go('home');
     }
 
-    cancelWorkout() {
+    cancelStatus() {
         // navigate home...
         this.$state.go('home');
     }
@@ -199,4 +167,4 @@ class EditWoController {
     }
 }
 
-export default EditWoController;
+export default EditStatusController;

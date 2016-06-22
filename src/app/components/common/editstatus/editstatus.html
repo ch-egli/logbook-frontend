@@ -1,0 +1,74 @@
+<navbar xmlns="http://www.w3.org/1999/html"></navbar>
+<main>
+    <style>
+        .full button span {
+        background-color: limegreen;
+        border-radius: 32px;
+        color: black;
+        }
+        .partially button span {
+        background-color: orange;
+        border-radius: 32px;
+        color: black;
+        }
+    </style>
+    <div class="container">
+        <div class="jumbotron">
+            <div>
+                <h1>
+                    <small>{{ $ctrl.title }}</small>
+                </h1>
+            </div>
+        </div>
+        <div class="container">
+
+            <form name="$ctrl.statusForm">
+
+                <div class="form-group">
+                    <label for="datum">Datum</label>
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               uib-datepicker-popup="dd.MM.yyyy"
+                               id="datum"
+                               ng-model="$ctrl.statusData.datum"
+                               is-open="$ctrl.popup1.opened"
+                               datepicker-options="dateOptions"
+                               ng-required="true"
+                               close-text="Schliessen"/>
+                    <span class="input-group-btn">
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-click="$ctrl.open1()">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="schlaf">Schlaf (Stunden)</label>
+                    <input type="number" class="form-control" id="schlaf" ng-model="$ctrl.statusData.schlaf">
+                </div>
+                <div class="form-group">
+                    <label for="gefuehl">Gefühl</label>
+                    <select class="form-control" id="gefuehl" ng-model="$ctrl.statusData.gefuehl">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bemerkung">Bemerkung</label>
+                    <input type="text" class="form-control" id="bemerkung" ng-model="$ctrl.statusData.bemerkung">
+                </div>
+
+                <button type="submit" class="btn btn-primary" ng-disabled="!$ctrl.statusData.username" ng-click="$ctrl.submitStatus()">OK</button>
+                <button type="submit" class="btn btn-default" ng-click="$ctrl.cancelStatus()">Abbrechen</button>
+            </form>
+
+        </div>
+
+    </div>
+</main>
+

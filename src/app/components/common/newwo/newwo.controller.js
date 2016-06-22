@@ -9,10 +9,11 @@ import infoDialogImage from "./images/belastung.png"
 
 class NewWoController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, config, $log, $state) {
+    constructor(workoutsService, oAuthService, config, $window, $log, $state) {
         this.workoutsService = workoutsService;
         this.$log = $log;
         this.$state = $state;
+        this.$window = $window;
 
         this.oAuthService = oAuthService;
         this.config = config;
@@ -211,6 +212,7 @@ class NewWoController {
         this.workoutForm.$setPristine();
 
         // navigate home...
+        this.$window.localStorage['activeTab'] = 0;
         this.$state.go('home');
     }
 

@@ -9,8 +9,9 @@ import modalConfirmDeletion from "./confirmDeletion.html"
 
 class HomeController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, $log, $uibModal, $state, $window, NgTableParams) {
+    constructor(workoutsService, statusService, oAuthService, $log, $uibModal, $state, $window, NgTableParams) {
         this.workoutsService = workoutsService;
+        this.statusService = statusService;
         this.oAuthService = oAuthService;
         this.$uibModal = $uibModal;
         this.$log = $log;
@@ -25,6 +26,21 @@ class HomeController {
         this.authData = this.oAuthService.getAuthData();
         this.username = this.oAuthService.getUsername();
 
+        this.active = 0;
+/*
+        this.activeTab = 1;
+        let storageActiveTab = this.$window.localStorage['activeTab'];
+        this.$log.debug('storageActiveTab: ' + storageActiveTab);
+        if (!storageActiveTab) {
+            //this.activeTab = this.$window.localStorage['activeTab'];
+        }
+*/
+
+        this.tabs = [
+            { title:'Dynamic Title 1', content:'Dynamic content 1' },
+            { title:'Dynamic Title 2', content:'Dynamic content 2' }
+          ];
+
         this.filter = false;
         let storageFilterVal = this.$window.localStorage['doFilter.' + this.username];
         this.$log.debug('storageFilterVal: ' + storageFilterVal);
@@ -34,13 +50,29 @@ class HomeController {
         let doFilter = this.filter;
 
         let woService = this.workoutsService;
-        this.tableParams = new NgTableParams(
+        this.tableParamsWo = new NgTableParams(
             { page: 1, count: 8 },
             {
                 counts: [8, 16, 32],
                 paginationMaxBlocks: 7,
                 getData: function(params) {
                     return woService.getAllWorkouts(params.page() - 1, params.count(), doFilter).$promise.then(function(data) {
+                        params.total(data.totalElements);
+                        return data.content;
+                    });
+
+                }
+            }
+        );
+
+        let statusSvc = this.statusService;
+        this.tableParamsStatus = new NgTableParams(
+            { page: 1, count: 7 },
+            {
+                counts: [7, 14, 28],
+                paginationMaxBlocks: 7,
+                getData: function(params) {
+                    return statusSvc.getAllStati(params.page() - 1, params.count(), doFilter).$promise.then(function(data) {
                         params.total(data.totalElements);
                         return data.content;
                     });
@@ -75,6 +107,41 @@ class HomeController {
     isMyWorkout(workout) {
         return this.username === workout.benutzername;
     }
+
+    isMyStatus(status) {
+        return this.username === status.benutzername;
+    }
+
+    isTrainer() {
+        let result = false;
+        let userRoles = this.authData.roles;
+        if (userRoles.indexOf('trainer') > -1) {
+            result = true;
+        }
+        return result;
+    }
+
+
+/*
+    getActiveTab() {
+        let log = this.$log;
+        let result = this.$window.localStorage['activeTab'];
+        log.debug("activeTab: " + result);
+        this.activeTab = result;
+        return result;
+    }
+
+    setActiveTab(activeTab) {
+        let log = this.$log;
+        this.$window.localStorage['activeTab'] = activeTab;
+        log.debug("activeTab: " + activeTab);
+        this.activeTab = activeTab;
+    }
+
+    alertMe() {
+        this.$log.debug('onSelect -> activeTab: ' + this.activeTab);
+    }
+*/
 
     hasEgliSistersRole() {
         return this.authData.roles.indexOf('egliSisters') > -1;
