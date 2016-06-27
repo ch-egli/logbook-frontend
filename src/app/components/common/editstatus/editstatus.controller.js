@@ -39,55 +39,8 @@ class EditStatusController {
         this.statusData = {};
         this.resetImages();
         this.statusData = statusService.getStatusById(this.id);
-/*
-        $scope.$watch(angular.bind(this, function () {
-                          return this.statusData;
-                        }), function(newValue, oldValue) {
-            console.log('newVal: ' + newValue.gefuehl + ' oldVal: ' + oldValue.gefuehl);
-        });
-*/
-
-/*
-        this.statusData = {};
-        let svc = this;
-
-        let promise = statusService.getStatusById2(this.id);
-        this.statusData = promise.then(function(result) {
-                let res = {};
-                res.datum = result.data.datum;
-                res.schlaf = result.data.schlaf;
-                res.gefuehl = '' + result.data.gefuehl;
-                res.bemerkung = result.data.bemerkung;
-            });
-*/
         this.statusData.id = this.id;
         this.statusData.username = this.username;
-
-/*
-        $scope.$watch('$ctrl.statusData', function(newValue, oldValue) {
-            console.log('newVal: ' + newValue + ' oldVal: ' + oldValue);
-        });
-
-        this.refresh = function() {
-            let state = this.$state;
-            console.log('update with timeout fired');
-            state.go('editstatus');
-        };
-        $timeout(this.refresh(), 3000);
-*/
-        //this.image1 = (this.statusData.gefuehl) === 1 ? gefuehlImage1 : gefuehlImage1g;
-
-/*
-        $timeout(function() {
-            console.log('jetzt');
-        }, 3000);
-*/
-/*
-        promise.then(function(data) {
-            console.log('jetzt: ' + data);
-            //svc.$state.go('editstatus');
-        });
-*/
 
         /*
          * Start adding Angular UI Datepicker functions...
@@ -205,7 +158,7 @@ class EditStatusController {
         this.statusService.editStatus(dataObj);
 
         // navigate home...
-        this.$window.localStorage['activeTab'] = 0;
+        this.$window.localStorage['activeTab'] = 1;
         this.$state.go('home');
     }
 
