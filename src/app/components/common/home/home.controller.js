@@ -26,15 +26,13 @@ class HomeController {
         this.authData = this.oAuthService.getAuthData();
         this.username = this.oAuthService.getUsername();
 
-        this.active = 0;
-/*
-        this.activeTab = 1;
+        this.activeTab = 0;
         let storageActiveTab = this.$window.localStorage['activeTab'];
         this.$log.debug('storageActiveTab: ' + storageActiveTab);
-        if (!storageActiveTab) {
-            //this.activeTab = this.$window.localStorage['activeTab'];
+        if (storageActiveTab) {
+            this.activeTab = parseInt(storageActiveTab);
         }
-*/
+        this.$log.debug('activeTab: ' + this.activeTab);
 
         this.filter = false;
         let storageFilterVal = this.$window.localStorage['doFilter.' + this.username];
@@ -116,6 +114,12 @@ class HomeController {
         return result;
     }
 
+    setActiveTab(activeTab) {
+        let log = this.$log;
+        this.$window.localStorage['activeTab'] = activeTab;
+        this.activeTab = activeTab;
+        log.debug("activeTab: " + activeTab);
+    }
 
 /*
     getActiveTab() {
@@ -126,12 +130,6 @@ class HomeController {
         return result;
     }
 
-    setActiveTab(activeTab) {
-        let log = this.$log;
-        this.$window.localStorage['activeTab'] = activeTab;
-        log.debug("activeTab: " + activeTab);
-        this.activeTab = activeTab;
-    }
 
     alertMe() {
         this.$log.debug('onSelect -> activeTab: ' + this.activeTab);

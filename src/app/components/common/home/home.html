@@ -30,12 +30,14 @@
             <p>{{ $ctrl.welcomeMessage }}</p>
         </div>
 
+<!--
         <p>
-            <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.active = 0">Select first tab</button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.active = 1">Select second tab</button>
+            <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.activeTab = 0">Select first tab</button>
+            <button type="button" class="btn btn-default btn-sm" ng-click="$ctrl.activeTab = 1">Select second tab</button>
         </p>
-        <uib-tabset active="$ctrl.active">
-            <uib-tab index="0">
+-->
+        <uib-tabset active="$ctrl.activeTab">
+            <uib-tab index="0" select="$ctrl.setActiveTab(0)">
 
                 <uib-tab-heading><h2>Letzte Trainingseinheiten</h2></uib-tab-heading>
                 <div class="container tab-container">
@@ -80,7 +82,7 @@
                 </div>
             </uib-tab>
 
-            <uib-tab index="1">
+            <uib-tab index="1" select="$ctrl.setActiveTab(1)">
                 <uib-tab-heading><h2>Status</h2></uib-tab-heading>
                 <div class="container tab-container">
                     <table ng-table="$ctrl.tableParamsStatus" show-filter="true" class="table table-striped">
@@ -98,7 +100,7 @@
                         <tbody>
                         <tr ng-repeat="s in $data track by s.id">
                             <td>{{ s.datum | date:'EEE' }}</td>
-                            <td>{{ s.datum | date:'dd.MM.yy' }}</td>
+                            <td>{{ s.datum | date:'EEE' | $ctrl.myFilter }}, {{ s.datum | date:'dd.MM.yy' }}</td>
                             <td ng-show="$ctrl.isTrainer()">{{ s.benutzername }}</td>
                             <td>{{ s.schlaf }}</td>
                             <td>{{ s.gefuehl }}</td>
