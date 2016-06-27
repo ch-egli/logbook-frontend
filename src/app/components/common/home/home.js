@@ -15,6 +15,8 @@ import 'ng-table/dist/ng-table.css';
 import template from './home.html';
 import controller from './home.controller';
 
+import weekdayfilter from './filter/weekdayfilter';
+
 
 let homeModule = angular.module('home', [
     uiRouter, uiBootstrap, ngTable
@@ -39,6 +41,8 @@ let homeModule = angular.module('home', [
                 }
             });
     })
+
+    .filter('weekdayfilter', weekdayfilter)
 
     .component('home', {
         template,
