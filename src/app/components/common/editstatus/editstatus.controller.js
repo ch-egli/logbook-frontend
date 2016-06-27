@@ -5,6 +5,15 @@
  * @version: 0.0.1
  * @since 20.06.2016
  */
+import gefuehlImage1 from "../images/grinning.png"
+import gefuehlImage2 from "../images/smirking.png"
+import gefuehlImage3 from "../images/frowning.png"
+import gefuehlImage4 from "../images/fearful.png"
+import gefuehlImage1g from "../images/grinning-g.png"
+import gefuehlImage2g from "../images/smirking-g.png"
+import gefuehlImage3g from "../images/frowning-g.png"
+import gefuehlImage4g from "../images/fearful-g.png"
+
 class EditStatusController {
     /*@ngInject*/
     constructor(statusService, oAuthService, config, $window, $log, $state, $stateParams) {
@@ -27,10 +36,58 @@ class EditStatusController {
         }
         this.$log.debug('username (in constructor): ' + this.username);
 
+        this.statusData = {};
+        this.resetImages();
         this.statusData = statusService.getStatusById(this.id);
+/*
+        $scope.$watch(angular.bind(this, function () {
+                          return this.statusData;
+                        }), function(newValue, oldValue) {
+            console.log('newVal: ' + newValue.gefuehl + ' oldVal: ' + oldValue.gefuehl);
+        });
+*/
+
+/*
+        this.statusData = {};
+        let svc = this;
+
+        let promise = statusService.getStatusById2(this.id);
+        this.statusData = promise.then(function(result) {
+                let res = {};
+                res.datum = result.data.datum;
+                res.schlaf = result.data.schlaf;
+                res.gefuehl = '' + result.data.gefuehl;
+                res.bemerkung = result.data.bemerkung;
+            });
+*/
         this.statusData.id = this.id;
         this.statusData.username = this.username;
 
+/*
+        $scope.$watch('$ctrl.statusData', function(newValue, oldValue) {
+            console.log('newVal: ' + newValue + ' oldVal: ' + oldValue);
+        });
+
+        this.refresh = function() {
+            let state = this.$state;
+            console.log('update with timeout fired');
+            state.go('editstatus');
+        };
+        $timeout(this.refresh(), 3000);
+*/
+        //this.image1 = (this.statusData.gefuehl) === 1 ? gefuehlImage1 : gefuehlImage1g;
+
+/*
+        $timeout(function() {
+            console.log('jetzt');
+        }, 3000);
+*/
+/*
+        promise.then(function(data) {
+            console.log('jetzt: ' + data);
+            //svc.$state.go('editstatus');
+        });
+*/
 
         /*
          * Start adding Angular UI Datepicker functions...
@@ -157,14 +214,41 @@ class EditStatusController {
         this.$state.go('home');
     }
 
-    showInfo() {
-        this.showInfoImage = !this.showInfoImage;
+    selectImage1() {
+        this.$log.debug('image 1 selected...');
+        this.statusData.gefuehl = 1;
+        this.resetImages();
+        this.statusData.image1 = gefuehlImage1;
     }
 
-    getInfoImage() {
-        this.$log.debug('got info image...');
-        return infoDialogImage;
+    selectImage2() {
+        this.$log.debug('image 2 selected...');
+        this.statusData.gefuehl = 2;
+        this.resetImages();
+        this.statusData.image2 = gefuehlImage2;
     }
+
+    selectImage3() {
+        this.$log.debug('image 3 selected...');
+        this.statusData.gefuehl = 3;
+        this.resetImages();
+        this.statusData.image3 = gefuehlImage3;
+    }
+
+    selectImage4() {
+        this.$log.debug('image 4 selected...');
+        this.statusData.gefuehl = 4;
+        this.resetImages();
+        this.statusData.image4 = gefuehlImage4;
+    }
+
+    resetImages() {
+        this.statusData.image1 = gefuehlImage1g;
+        this.statusData.image2 = gefuehlImage2g;
+        this.statusData.image3 = gefuehlImage3g;
+        this.statusData.image4 = gefuehlImage4g;
+    }
+
 }
 
 export default EditStatusController;

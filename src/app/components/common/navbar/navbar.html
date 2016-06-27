@@ -19,9 +19,7 @@
                 <li><a ui-sref="newstatus"><span class="glyphicon glyphicon-plus"></span> Status...</a></li>
                 <li ng-show="!$ctrl.oAuthService.isTrainer()"><a ng-click="$ctrl.exportToExcel()"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
                 <li ng-show="$ctrl.oAuthService.isTrainer()"><a ui-sref="export"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
-<!--
-                <li><a ui-sref="info">Info</a></li>
--->
+                <li><a ui-sref="about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="!$ctrl.oAuthService.isLoggedIn()"><a ui-sref="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>

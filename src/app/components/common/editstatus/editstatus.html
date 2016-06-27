@@ -2,14 +2,30 @@
 <main>
     <style>
         .full button span {
-        background-color: limegreen;
-        border-radius: 32px;
-        color: black;
+            background-color: limegreen;
+            border-radius: 32px;
+            color: black;
         }
         .partially button span {
-        background-color: orange;
-        border-radius: 32px;
-        color: black;
+            background-color: orange;
+            border-radius: 32px;
+            color: black;
+        }
+        .gefuehlEmoji {
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 34px;
+            height: 34px;
+        }
+        .gefuehlEmojiFirst {
+            margin-left: 20px;
+            margin-right: 10px;
+            width: 34px;
+            height: 34px;
+        }
+        .emoji-group {
+            margin-bottom: 22px;
+            margin-top: 22px;
         }
     </style>
     <div class="container">
@@ -45,18 +61,17 @@
                     </span>
                     </p>
                 </div>
+                <div class="emoji-group form-group">
+                    <label for="gefuehl">Gefühl {{$ctrl.statusData.gefuehl ? '(' + $ctrl.statusData.gefuehl + ')' : ''}}</label>
+                    <input type="hidden" id="gefuehl"/>
+                    <img src="{{$ctrl.statusData.image1}}" alt="Gefühl 1 (super)" ng-click="$ctrl.selectImage1()" class="gefuehlEmojiFirst">
+                    <img src="{{$ctrl.statusData.image2}}" alt="Gefühl 2 (gut)" ng-click="$ctrl.selectImage2()" class="gefuehlEmoji">
+                    <img src="{{$ctrl.statusData.image3}}" alt="Gefühl 3 (so so)" ng-click="$ctrl.selectImage3()" class="gefuehlEmoji">
+                    <img src="{{$ctrl.statusData.image4}}" alt="Gefühl 4 (schlecht)" ng-click="$ctrl.selectImage4()" class="gefuehlEmoji">
+                </div>
                 <div class="form-group">
                     <label for="schlaf">Schlaf (Stunden)</label>
                     <input type="number" class="form-control" id="schlaf" ng-model="$ctrl.statusData.schlaf">
-                </div>
-                <div class="form-group">
-                    <label for="gefuehl">Gefühl</label>
-                    <select class="form-control" id="gefuehl" ng-model="$ctrl.statusData.gefuehl">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select>
                 </div>
                 <div class="form-group">
                     <label for="bemerkung">Bemerkung</label>

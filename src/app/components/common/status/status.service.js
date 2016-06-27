@@ -5,6 +5,15 @@
  * @version: 0.0.1
  * @since 20.06.2016
  */
+import gefuehlImage1 from "../images/grinning.png"
+import gefuehlImage2 from "../images/smirking.png"
+import gefuehlImage3 from "../images/frowning.png"
+import gefuehlImage4 from "../images/fearful.png"
+import gefuehlImage1g from "../images/grinning-g.png"
+import gefuehlImage2g from "../images/smirking-g.png"
+import gefuehlImage3g from "../images/frowning-g.png"
+import gefuehlImage4g from "../images/fearful-g.png"
+
 class StatusService {
     /*@ngInject*/
     constructor(config, $resource, $http, $log, $cookies, $state) {
@@ -66,11 +75,14 @@ class StatusService {
             this._setAuthorizationHeader();
             let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/all/status/' + id);
             res.success(function(data, status, headers, config) {
-                //console.log('got data: ' + status);
                 if (data) {
                     statusData.datum = data.datum;
                     statusData.schlaf = data.schlaf;
                     statusData.gefuehl = '' + data.gefuehl;
+                    statusData.image1 = (data.gefuehl === 1) ? gefuehlImage1 : gefuehlImage1g;
+                    statusData.image2 = (data.gefuehl === 2) ? gefuehlImage2 : gefuehlImage2g;
+                    statusData.image3 = (data.gefuehl === 3) ? gefuehlImage3 : gefuehlImage3g;
+                    statusData.image4 = (data.gefuehl === 4) ? gefuehlImage4 : gefuehlImage4g;
                     statusData.bemerkung = data.bemerkung;
                 }
                 return statusData;

@@ -5,6 +5,15 @@
  * @version: 0.0.1
  * @since 20.06.2016
  */
+import gefuehlImage1 from "../images/grinning.png"
+import gefuehlImage2 from "../images/smirking.png"
+import gefuehlImage3 from "../images/frowning.png"
+import gefuehlImage4 from "../images/fearful.png"
+import gefuehlImage1g from "../images/grinning-g.png"
+import gefuehlImage2g from "../images/smirking-g.png"
+import gefuehlImage3g from "../images/frowning-g.png"
+import gefuehlImage4g from "../images/fearful-g.png"
+
 class NewStatusController {
     /*@ngInject*/
     constructor(statusService, oAuthService, config, $window, $log, $state) {
@@ -158,14 +167,62 @@ class NewStatusController {
         this.$state.go('home');
     }
 
-    showInfo() {
-        this.showInfoImage = !this.showInfoImage;
+    selectImage1() {
+        this.$log.debug('image 1 selected...');
+        this.gefuehl = 1;
+        this.$state.go('newstatus');
     }
 
-    getInfoImage() {
-        this.$log.debug('got info image...');
-        return infoDialogImage;
+    selectImage2() {
+        this.$log.debug('image 2 selected...');
+        this.gefuehl = 2;
+        this.$state.go('newstatus');
     }
+
+    selectImage3() {
+        this.$log.debug('image 3 selected...');
+        this.gefuehl = 3;
+        this.$state.go('newstatus');
+    }
+
+    selectImage4() {
+        this.$log.debug('image 4 selected...');
+        this.gefuehl = 4;
+        this.$state.go('newstatus');
+    }
+
+    getImage1() {
+        if (this.gefuehl === 1) {
+            return gefuehlImage1;
+        } else {
+        return gefuehlImage1g;
+        }
+    }
+
+    getImage2() {
+        if (this.gefuehl === 2) {
+            return gefuehlImage2;
+        } else {
+        return gefuehlImage2g;
+        }
+    }
+
+    getImage3() {
+        if (this.gefuehl === 3) {
+            return gefuehlImage3;
+        } else {
+        return gefuehlImage3g;
+        }
+    }
+
+    getImage4() {
+        if (this.gefuehl === 4) {
+            return gefuehlImage4;
+        } else {
+        return gefuehlImage4g;
+        }
+    }
+
 }
 
 export default NewStatusController;

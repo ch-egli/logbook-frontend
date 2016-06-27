@@ -45,6 +45,7 @@ angular.module('app', [
 
     // Globale Konfigurationeinstellungen
     .constant('config', {
+        logbookVersion: '1.0.1',
 
 /*
         resourceServerUrl: 'http://52.59.250.63:8181/',
@@ -59,7 +60,7 @@ angular.module('app', [
 
         workoutDefaultOrt1: 'K44',
         workoutDefaultOrt2: null,
-        workoutDefaultSchlaf: null,
+        workoutDefaultSchlaf: 8,
         workoutDefaultLead: null,
         workoutDefaultBouldern: null,
         workoutDefaultKraftraum: null,
@@ -72,7 +73,7 @@ angular.module('app', [
         workoutDefaultZuege12: null,
         workoutDefaultZuege23: null,
         workoutDefaultZuege34: null,
-        workoutDefaultGefuehl: '1',
+        workoutDefaultGefuehl: null,
         workoutDefaultWettkampf: null,
         workoutDefaultSonstiges: null,
 
