@@ -16,13 +16,14 @@ import gefuehlImage4g from "../images/fearful-g.png"
 
 class StatusService {
     /*@ngInject*/
-    constructor(config, $resource, $http, $log, $cookies, $state) {
+    constructor(config, $resource, $http, $log, $cookies, $state, $filter) {
         this.$log = $log;
         this.config = config;
         this.$http = $http;
         this.$resource = $resource;
         this.$cookies = $cookies;
         this.$state = $state;
+        this.$filter = $filter;
         this.authData = {};
 
         this.$log.debug('username (in StatusService constructor): ' + this.authData.name);
@@ -92,6 +93,51 @@ class StatusService {
             });
         }
         return statusData;
+    }
+
+    getStatusByDate(username, date) {
+        let service = this;
+        let statusData = {};
+        statusData.id = null;
+        statusData.schlaf = this.config.workoutDefaultSchlaf;
+        statusData.gefuehl = this.config.workoutDefaultGefuehl;
+        statusData.image1 = gefuehlImage1g;
+        statusData.image2 = gefuehlImage2g;
+        statusData.image3 = gefuehlImage3g;
+        statusData.image4 = gefuehlImage4g;
+
+        if (date && username) {
+            this._setAuthorizationHeader();
+            let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/' + username + '/status/datum/' + this.formatDate(date));
+            res.success(function(data, status, headers, config) {
+                if (data) {
+                    statusData.id = data.id;
+                    statusData.schlaf = data.schlaf;
+                    statusData.gefuehl = '' + data.gefuehl;
+                    statusData.image1 = (data.gefuehl === 1) ? gefuehlImage1 : gefuehlImage1g;
+                    statusData.image2 = (data.gefuehl === 2) ? gefuehlImage2 : gefuehlImage2g;
+                    statusData.image3 = (data.gefuehl === 3) ? gefuehlImage3 : gefuehlImage3g;
+                    statusData.image4 = (data.gefuehl === 4) ? gefuehlImage4 : gefuehlImage4g;
+
+                    //console.log('## id     : ' + data.id);
+                    //console.log('## gefuehl: ' + data.gefuehl);
+                    //console.log('## schlaf : ' + data.schlaf);
+                }
+                return statusData;
+            });
+            res.error(function(data, status, headers, config) {
+                alert( "failure message: " + JSON.stringify({data: data}));
+            });
+        }
+        return statusData;
+    }
+
+    formatDate(date) {
+        let log = this.$log;
+        let myFormat = 'yyyy-MM-dd';
+        let formattedDate = this.$filter('date')(date, myFormat);
+        log.debug('formattedDate: ' + formattedDate);
+        return formattedDate;
     }
 
     addStatus(status) {

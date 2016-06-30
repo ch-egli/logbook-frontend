@@ -7,10 +7,20 @@
  */
 import infoDialogImage from "./images/belastung.png"
 
+import gefuehlImage1 from "../images/grinning.png"
+import gefuehlImage2 from "../images/smirking.png"
+import gefuehlImage3 from "../images/frowning.png"
+import gefuehlImage4 from "../images/fearful.png"
+import gefuehlImage1g from "../images/grinning-g.png"
+import gefuehlImage2g from "../images/smirking-g.png"
+import gefuehlImage3g from "../images/frowning-g.png"
+import gefuehlImage4g from "../images/fearful-g.png"
+
 class EditWoController {
     /*@ngInject*/
-    constructor(workoutsService, oAuthService, config, $window, $log, $state, $stateParams) {
+    constructor(workoutsService, statusService, oAuthService, config, $window, $log, $state, $stateParams) {
         this.workoutsService = workoutsService;
+        this.statusService = statusService;
         this.$log = $log;
         this.$state = $state;
         this.$window = $window;
@@ -35,6 +45,15 @@ class EditWoController {
         this.woData.id = this.id;
         this.woData.username = this.username;
 
+        this.statusData = {};
+        this.statusData.id = null;
+        this.statusData.schlaf = this.config.workoutDefaultSchlaf;
+        this.statusData.gefuehl = this.config.workoutDefaultGefuehl;
+
+        this.statusData.image1 = gefuehlImage1g;
+        this.statusData.image2 = gefuehlImage2g;
+        this.statusData.image3 = gefuehlImage3g;
+        this.statusData.image4 = gefuehlImage4g;
 
         /*
          * Start adding Angular UI Datepicker functions...
@@ -130,6 +149,8 @@ class EditWoController {
          * End Angular UI Datepicker functions...
          */
 
+         this.statusData = this.statusService.getStatusByDate(this.username, this.datum);
+
     }
 
     submitWorkout() {
@@ -138,7 +159,6 @@ class EditWoController {
         this.$log.debug('datum: ' + this.woData.datum);
         this.$log.debug('ort1: ' + this.woData.ort1);
         this.$log.debug('ort2: ' + this.woData.ort2);
-        this.$log.debug('schlaf: ' + this.woData.schlaf);
         this.$log.debug('lead: ' + this.woData.lead);
         this.$log.debug('bouldern: ' + this.woData.bouldern);
         this.$log.debug('kraftraum: ' + this.woData.kraftraum);
@@ -150,9 +170,11 @@ class EditWoController {
         this.$log.debug('zuege12: ' + this.woData.zuege12);
         this.$log.debug('zuege23: ' + this.woData.zuege23);
         this.$log.debug('zuege34: ' + this.woData.zuege34);
-        this.$log.debug('gefuehl: ' + this.woData.gefuehl);
         this.$log.debug('wettkampf: ' + this.woData.wettkampf);
         this.$log.debug('sonstiges: ' + this.woData.sonstiges);
+
+        this.$log.debug('gefuehl: ' + this.statusData.gefuehl);
+        this.$log.debug('schlaf: ' + this.statusData.schlaf);
 
         // add workout
         let dataObj = {
@@ -160,7 +182,6 @@ class EditWoController {
             "benutzername": this.woData.username,
             "datum": this.woData.datum,
             "ort": this.woData.ort2 != null ? this.woData.ort2 : this.woData.ort1,
-            "schlaf": this.woData.schlaf,
             "lead": this.woData.lead === true ? 1 : null,
             "bouldern": this.woData.bouldern === true ? 1 : null,
             "kraftraum": this.woData.kraftraum === true ? 1 : null,
@@ -173,11 +194,27 @@ class EditWoController {
             "zuege23": this.woData.zuege23,
             "zuege34": this.woData.zuege34,
             "trainingszeit": this.woData.trainingszeit,
-            "gefuehl": this.woData.gefuehl,
             "wettkampf": this.woData.wettkampf,
-            "sonstiges": this.woData.sonstiges
+            "sonstiges": this.woData.sonstiges,
+            "schlaf": this.woData.schlaf,
+            "gefuehl": this.woData.gefuehl
         };
         this.workoutsService.editWorkout(dataObj);
+
+
+        let statusDataObj = {
+            "id": this.statusData.id,
+            "benutzername": this.username,
+            "datum": this.datum,
+            "gefuehl": this.statusData.gefuehl,
+            "schlaf": this.statusData.schlaf,
+        }
+
+        if (this.statusData.id) {
+            this.statusService.editStatus(statusDataObj);
+        } else {
+            this.statusService.addStatus(statusDataObj);
+        }
 
         // navigate home...
         this.$window.localStorage['activeTab'] = 0;
@@ -194,9 +231,50 @@ class EditWoController {
     }
 
     getInfoImage() {
-        this.$log.debug('got info image...');
+        //this.$log.debug('got info image...');
         return infoDialogImage;
     }
+
+    selectImage1() {
+        this.$log.debug('image 1 selected...');
+        this.statusData.gefuehl = 1;
+        this.resetImages();
+        this.statusData.image1 = gefuehlImage1;
+    }
+
+    selectImage2() {
+        this.$log.debug('image 2 selected...');
+        this.statusData.gefuehl = 2;
+        this.resetImages();
+        this.statusData.image2 = gefuehlImage2;
+    }
+
+    selectImage3() {
+        this.$log.debug('image 3 selected...');
+        this.statusData.gefuehl = 3;
+        this.resetImages();
+        this.statusData.image3 = gefuehlImage3;
+    }
+
+    selectImage4() {
+        this.$log.debug('image 4 selected...');
+        this.statusData.gefuehl = 4;
+        this.resetImages();
+        this.statusData.image4 = gefuehlImage4;
+    }
+
+    resetImages() {
+        this.statusData.image1 = gefuehlImage1g;
+        this.statusData.image2 = gefuehlImage2g;
+        this.statusData.image3 = gefuehlImage3g;
+        this.statusData.image4 = gefuehlImage4g;
+    }
+
+    onDateChange() {
+        this.$log.debug('Date changed: new date is ' + this.datum);
+        this.statusData = this.statusService.getStatusByDate(this.username, this.datum);
+    }
+
 }
 
 export default EditWoController;

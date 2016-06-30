@@ -45,7 +45,7 @@ angular.module('app', [
 
     // Globale Konfigurationeinstellungen
     .constant('config', {
-        logbookVersion: '1.0.1',
+        logbookVersion: '1.0.5',
 
 /*
         resourceServerUrl: 'http://52.59.250.63:8181/',
