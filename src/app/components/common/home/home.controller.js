@@ -18,6 +18,8 @@ class HomeController {
         this.$state = $state;
         this.$window = $window;
 
+        this.allUsers = [{id: 'liv', title: 'liv'}, {id: 'zoe', title: 'zoe'}, {id: 'chrigu', title: 'chrigu'}];
+
         this.title = 'RZ-BeO Trainings-Logbook';
         this.welcomeMessage = 'Herzlich Willkommen, ' + this.oAuthService.getFirstname();
 
@@ -44,12 +46,12 @@ class HomeController {
 
         let woService = this.workoutsService;
         this.tableParamsWo = new NgTableParams(
-            { page: 1, count: 7 },
+            { page: 1, count: 10 },
             {
-                counts: [7, 14, 28],
+                counts: [10, 20, 40],
                 paginationMaxBlocks: 7,
                 getData: function(params) {
-                    return woService.getAllWorkouts(params.page() - 1, params.count(), doFilter).$promise.then(function(data) {
+                    return woService.getAllWorkouts(params.page() - 1, params.count(), doFilter, params.filter()).$promise.then(function(data) {
                         params.total(data.totalElements);
                         return data.content;
                     });
@@ -65,7 +67,7 @@ class HomeController {
                 counts: [7, 14, 28],
                 paginationMaxBlocks: 7,
                 getData: function(params) {
-                    return statusSvc.getAllStati(params.page() - 1, params.count(), doFilter).$promise.then(function(data) {
+                    return statusSvc.getAllStati(params.page() - 1, params.count(), doFilter, params.filter()).$promise.then(function(data) {
                         params.total(data.totalElements);
                         return data.content;
                     });
@@ -120,21 +122,6 @@ class HomeController {
         this.activeTab = activeTab;
         log.debug("activeTab: " + activeTab);
     }
-
-/*
-    getActiveTab() {
-        let log = this.$log;
-        let result = this.$window.localStorage['activeTab'];
-        log.debug("activeTab: " + result);
-        this.activeTab = result;
-        return result;
-    }
-
-
-    alertMe() {
-        this.$log.debug('onSelect -> activeTab: ' + this.activeTab);
-    }
-*/
 
     hasEgliSistersRole() {
         return this.authData.roles.indexOf('egliSisters') > -1;

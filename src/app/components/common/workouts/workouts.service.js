@@ -23,14 +23,18 @@ class WorkoutsService {
     /**
      * Get all workouts depending of user role.
      */
-    getAllWorkouts(mPage, mSize, mFilter) {
+    getAllWorkouts(mPage, mSize, mFilter, nameFilter) {
         let service = this;
         this._setAuthorizationHeader();
 
         let userRoles = this.authData.roles;
         let woDiscriminator = null;
         if (userRoles.indexOf('trainer') > -1) {
-            woDiscriminator = 'all';
+            if (nameFilter.benutzername) {
+                woDiscriminator = nameFilter.benutzername;
+            } else {
+                woDiscriminator = 'all';
+            }
         } else if ((mFilter === false) && (userRoles.indexOf('egliSisters') > -1)) {
             woDiscriminator = 'groupEgliSisters';
         } else {

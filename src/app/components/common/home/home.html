@@ -43,41 +43,28 @@
 
                 <uib-tab-heading><h2>Letzte Trainingseinheiten</h2></uib-tab-heading>
                 <div class="container tab-container">
-                    <table ng-table="$ctrl.tableParamsWo" show-filter="true" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th class="colMinWithForDate">Datum</th>
-                            <th>Benutzer</th>
-                            <th>Ort</th>
-                            <th class="hidden-xs">Dauer</th>
-                            <th class="hidden-xs">Belastung</th>
-                            <th class="hidden-xs">Züge12</th>
-                            <th class="hidden-xs">Züge23</th>
-                            <th class="hidden-xs">Züge34</th>
-                            <th style="white-space:nowrap;"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
+
+
+                    <table ng-table="$ctrl.tableParamsWo" show-filter="{{ $ctrl.isTrainer() ? 'true' : 'false' }}" class="table table-striped">
                         <tr ng-repeat="w in $data track by w.id">
-                            <td style="white-space:nowrap;">
+                            <td data-title="'Datum'" class="colMinWithForDate">
                                 <span class="weekday">{{ w.datum | date:'EEE' | weekdayfilter }}, </span>
                                 <a ui-sref="viewwo({id: w.id})" title="Daten anzeigen">{{ w.datum | date:'dd.MM.yy' }}</a>
                             </td>
-                            <td>{{ w.benutzername }}</td>
-                            <td>{{ w.ort }}</td>
-                            <td class="hidden-xs">{{ w.trainingszeit }}</td>
-                            <td class="hidden-xs">{{ w.belastung }}</td>
-                            <td class="hidden-xs">{{ w.zuege12 }}</td>
-                            <td class="hidden-xs">{{ w.zuege23 }}</td>
-                            <td class="hidden-xs">{{ w.zuege34 }}</td>
-                            <td style="white-space:nowrap;">
+                            <td data-title="'Benutzer'" filter="{ benutzername: 'select'}" filter-data="$ctrl.allUsers">{{ w.benutzername }}</td>
+                            <td data-title="'Ort'">{{ w.ort }}</td>
+                            <td data-title="'Dauer'" header-class="'hidden-xs'" class="hidden-xs">{{ w.trainingszeit }}</td>
+                            <td data-title="'Belastung'" header-class="'hidden-xs'" class="hidden-xs">{{ w.belastung }}</td>
+                            <td data-title="'Züge12'" header-class="'hidden-xs'" class="hidden-xs">{{ w.zuege12 }}</td>
+                            <td data-title="'Züge23'" header-class="'hidden-xs'" class="hidden-xs">{{ w.zuege23 }}</td>
+                            <td data-title="'Züge34'" header-class="'hidden-xs'" class="hidden-xs">{{ w.zuege34 }}</td>
+                            <td data-title="''" style="white-space:nowrap;">
                                 <span ng-show="$ctrl.isMyWorkout(w)">
                                     <a ui-sref="editwo({id: w.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>  |
                                     <a ng-click="$ctrl.askAndDelete(w)" title="Loeschen"><span class="glyphicon glyphicon-remove"></span></a>
                                 </span>
                             </td>
                         </tr>
-                        </tbody>
                     </table>
 
                     <div class="checkbox" ng-show="$ctrl.hasEgliSistersRole()">
@@ -89,35 +76,23 @@
 
             <uib-tab index="1" select="$ctrl.setActiveTab(1)">
                 <uib-tab-heading><h2>Status</h2></uib-tab-heading>
+
                 <div class="container tab-container">
-                    <table ng-table="$ctrl.tableParamsStatus" show-filter="true" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th class="colMinWithForDate">Datum</th>
-                            <th ng-show="$ctrl.isTrainer()">Benutzer</th>
-                            <th>Schlaf</th>
-                            <th>Gefühl</th>
-                            <th>Bemerkung</th>
-                            <th style="white-space:nowrap;"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                    <table ng-table="$ctrl.tableParamsStatus" show-filter="{{ $ctrl.isTrainer() ? 'true' : 'false' }}" class="table table-striped">
                         <tr ng-repeat="s in $data track by s.id">
-                            <td style="white-space:nowrap;"><span class="weekday">{{ s.datum | date:'EEE' | weekdayfilter }}, </span>{{ s.datum | date:'dd.MM.yy' }}</td>
-                            <td ng-show="$ctrl.isTrainer()">{{ s.benutzername }}</td>
-                            <td>{{ s.schlaf }}</td>
-                            <td>{{ s.gefuehl }}</td>
-                            <td>{{ s.bemerkung }}</td>
-                            <td>
+                            <td data-title="'Datum'"  class="colMinWithForDate"><span class="weekday">{{ s.datum | date:'EEE' | weekdayfilter }}, </span>{{ s.datum | date:'dd.MM.yy' }}</td>
+                            <td data-title="'Benutzer'" ng-show="$ctrl.isTrainer()" filter="{ benutzername: 'select'}" filter-data="$ctrl.allUsers">{{ s.benutzername }}</td>
+                            <td data-title="'Schlaf'">{{ s.schlaf }}</td>
+                            <td data-title="'Gefuehl'">{{ s.gefuehl }}</td>
+                            <td data-title="'Bemerkung'">{{ s.bemerkung }}</td>
+                            <td data-title="''">
                                 <span ng-show="$ctrl.isMyStatus(s)">
                                     <a ui-sref="editstatus({id: s.id})" title="Bearbeiten"><span class="glyphicon glyphicon-edit"></span></a>
                                 </span>
                             </td>
                         </tr>
-                        </tbody>
                     </table>
                 </div>
-
             </uib-tab>
 
         </uib-tabset>

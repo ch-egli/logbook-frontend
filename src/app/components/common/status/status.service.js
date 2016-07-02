@@ -32,14 +32,18 @@ class StatusService {
     /**
      * Get all status depending of user role.
      */
-    getAllStati(mPage, mSize, mFilter) {
+    getAllStati(mPage, mSize, mFilter, nameFilter) {
         let service = this;
         this._setAuthorizationHeader();
 
         let userRoles = this.authData.roles;
         let statusDiscriminator = null;
         if (userRoles.indexOf('trainer') > -1) {
-            statusDiscriminator = 'all';
+            if (nameFilter.benutzername) {
+                statusDiscriminator = nameFilter.benutzername;
+            } else {
+                statusDiscriminator = 'all';
+            }
         } else {
             statusDiscriminator = this.authData.name;
         }
