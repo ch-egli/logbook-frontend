@@ -14,6 +14,7 @@ class WorkoutsService {
         this.$resource = $resource;
         this.$cookies = $cookies;
         this.$state = $state;
+
         this.authData = {};
 
         this.$log.debug('username (in WorkoutsService constructor): ' + this.authData.name);
@@ -70,7 +71,7 @@ class WorkoutsService {
             res.success(function(data, status, headers, config) {
                 //console.log('got data: ' + status);
                 if (data) {
-                    woData.datum = data.datum;
+                    woData.datum = new Date(data.datum);
                     if (service.config.workoutLocations.indexOf(data.ort) > -1) {
                         woData.ort1 = data.ort;
                         woData.ort2 = null;

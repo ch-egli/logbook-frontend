@@ -15,8 +15,8 @@
         <div uib-collapse="$ctrl.navCollapsed" class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li><a ui-sref="home"><span class="glyphicon glyphicon glyphicon-home"></span> Home</a></li>
-                <li><a ui-sref="newwo"><span class="glyphicon glyphicon-plus"></span> Training...</a></li>
-                <li><a ui-sref="newstatus"><span class="glyphicon glyphicon-plus"></span> Status...</a></li>
+                <li><a ui-sref="newwo"><span class="glyphicon glyphicon-plus"></span> Neue Trainingseinheit...</a></li>
+                <li><a ui-sref="newstatus"><span class="glyphicon glyphicon-plus"></span> Neuer Status...</a></li>
                 <li ng-show="!$ctrl.oAuthService.isTrainer()"><a ng-click="$ctrl.exportToExcel()"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
                 <li ng-show="$ctrl.oAuthService.isTrainer()"><a ui-sref="export"><span class="glyphicon glyphicon-export"></span> Export...</a></li>
                 <li><a ui-sref="about"><span class="glyphicon glyphicon glyphicon-info-sign"></span> About</a></li>

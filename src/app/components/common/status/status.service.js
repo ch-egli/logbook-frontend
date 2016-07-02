@@ -77,7 +77,7 @@ class StatusService {
             let res = this.$http.get(service.config.resourceServerUrl + 'v1/users/all/status/' + id);
             res.success(function(data, status, headers, config) {
                 if (data) {
-                    statusData.datum = data.datum;
+                    statusData.datum = new Date(data.datum);
                     statusData.schlaf = data.schlaf;
                     statusData.gefuehl = '' + data.gefuehl;
                     statusData.image1 = (data.gefuehl === 1) ? gefuehlImage1 : gefuehlImage1g;
