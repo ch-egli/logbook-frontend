@@ -58,6 +58,12 @@ angular.module('app', [
         authClientId: 'logbookAngularClient',
         authClientSecret: 'myAbcdghij9876Secret',
 
+        athletes: [
+            {id: 'zoe', name: 'zoe', title: 'zoe'},
+            {id: 'liv', name: 'liv', title: 'liv'},
+            {id: 'joelle', name: 'joelle', title: 'joelle'}
+        ],
+
         workoutDefaultOrt1: 'K44',
         workoutDefaultOrt2: null,
         workoutDefaultSchlaf: 8,

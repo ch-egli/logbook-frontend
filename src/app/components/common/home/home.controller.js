@@ -9,7 +9,8 @@ import modalConfirmDeletion from "./confirmDeletion.html"
 
 class HomeController {
     /*@ngInject*/
-    constructor(workoutsService, statusService, oAuthService, $log, $uibModal, $state, $window, NgTableParams) {
+    constructor(config, workoutsService, statusService, oAuthService, $log, $uibModal, $state, $window, NgTableParams) {
+        this.config = config;
         this.workoutsService = workoutsService;
         this.statusService = statusService;
         this.oAuthService = oAuthService;
@@ -18,7 +19,7 @@ class HomeController {
         this.$state = $state;
         this.$window = $window;
 
-        this.allUsers = [{id: 'liv', title: 'liv'}, {id: 'zoe', title: 'zoe'}, {id: 'chrigu', title: 'chrigu'}];
+        this.athletes = this.config.athletes;
 
         this.title = 'RZ-BeO Trainings-Logbook';
         this.welcomeMessage = 'Herzlich Willkommen, ' + this.oAuthService.getFirstname();

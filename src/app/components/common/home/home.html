@@ -51,7 +51,7 @@
                                 <span class="weekday">{{ w.datum | date:'EEE' | weekdayfilter }}, </span>
                                 <a ui-sref="viewwo({id: w.id})" title="Daten anzeigen">{{ w.datum | date:'dd.MM.yy' }}</a>
                             </td>
-                            <td data-title="'Benutzer'" filter="{ benutzername: 'select'}" filter-data="$ctrl.allUsers">{{ w.benutzername }}</td>
+                            <td data-title="'Benutzer'" filter="{ benutzername: 'select'}" filter-data="$ctrl.athletes">{{ w.benutzername }}</td>
                             <td data-title="'Ort'">{{ w.ort }}</td>
                             <td data-title="'Dauer'" header-class="'hidden-xs'" class="hidden-xs">{{ w.trainingszeit }}</td>
                             <td data-title="'Belastung'" header-class="'hidden-xs'" class="hidden-xs">{{ w.belastung }}</td>
@@ -81,7 +81,7 @@
                     <table ng-table="$ctrl.tableParamsStatus" show-filter="{{ $ctrl.isTrainer() ? 'true' : 'false' }}" class="table table-striped">
                         <tr ng-repeat="s in $data track by s.id">
                             <td data-title="'Datum'"  class="colMinWithForDate"><span class="weekday">{{ s.datum | date:'EEE' | weekdayfilter }}, </span>{{ s.datum | date:'dd.MM.yy' }}</td>
-                            <td data-title="'Benutzer'" ng-show="$ctrl.isTrainer()" filter="{ benutzername: 'select'}" filter-data="$ctrl.allUsers">{{ s.benutzername }}</td>
+                            <td data-title="'Benutzer'" ng-show="$ctrl.isTrainer()" filter="{ benutzername: 'select'}" filter-data="$ctrl.athletes">{{ s.benutzername }}</td>
                             <td data-title="'Schlaf'">{{ s.schlaf }}</td>
                             <td data-title="'Gefuehl'">{{ s.gefuehl }}</td>
                             <td data-title="'Bemerkung'">{{ s.bemerkung }}</td>
