@@ -81,7 +81,7 @@
                     <table ng-table="$ctrl.tableParamsStatus" show-filter="{{ $ctrl.isTrainer() ? 'true' : 'false' }}" class="table table-striped">
                         <tr ng-repeat="s in $data track by s.id">
                             <td data-title="'Datum'"  class="colMinWithForDate"><span class="weekday">{{ s.datum | date:'EEE' | weekdayfilter }}, </span>{{ s.datum | date:'dd.MM.yy' }}</td>
-                            <td data-title="'Benutzer'" ng-show="$ctrl.isTrainer()" filter="{ benutzername: 'select'}" filter-data="$ctrl.athletes">{{ s.benutzername }}</td>
+                            <td data-title="'Benutzer'" ng-if="$ctrl.isTrainer()" ng-show="$ctrl.isTrainer()" filter="{ benutzername: 'select'}" filter-data="$ctrl.athletes">{{ s.benutzername }}</td>
                             <td data-title="'Schlaf'">{{ s.schlaf }}</td>
                             <td data-title="'Gefuehl'">{{ s.gefuehl }}</td>
                             <td data-title="'Bemerkung'">{{ s.bemerkung }}</td>
