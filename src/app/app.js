@@ -47,13 +47,13 @@ angular.module('app', [
     .constant('config', {
         logbookVersion: '1.0.5',
 
-/*
         resourceServerUrl: 'http://52.59.250.63:8181/',
         authServerUrl: 'http://52.59.250.63:8181/',
-*/
 
+/*
         resourceServerUrl: 'http://192.168.1.120:8181/',
         authServerUrl: 'http://192.168.1.120:8181/',
+*/
 
         authClientId: 'logbookAngularClient',
         authClientSecret: 'myAbcdghij9876Secret',
