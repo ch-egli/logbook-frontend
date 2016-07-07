@@ -45,7 +45,7 @@ angular.module('app', [
 
     // Globale Konfigurationeinstellungen
     .constant('config', {
-        logbookVersion: '1.0.5',
+        logbookVersion: '1.0.6',
 
         resourceServerUrl: 'http://52.59.250.63:8181/',
         authServerUrl: 'http://52.59.250.63:8181/',
@@ -66,7 +66,7 @@ angular.module('app', [
 
         workoutDefaultOrt1: 'K44',
         workoutDefaultOrt2: null,
-        workoutDefaultSchlaf: 8,
+        workoutDefaultSchlaf: 9,
         workoutDefaultLead: null,
         workoutDefaultBouldern: null,
         workoutDefaultKraftraum: null,
